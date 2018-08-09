@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+wp-cli.local.yml
+node_modules/
+vendor/
+*.sql
+*.tar.gz
+*.zip
+wordpress/
+.idea/
+__MOCK_DATA__/rest/*/*/*/mock/response.txt

@@ -1,0 +1,45 @@
+{
+  "name": "caldera-admin",
+  "version": "0.1.0",
+  "public": "true",
+  "dependencies": {
+    "@caldera-labs/admin-client": "^0.1.0",
+    "@caldera-labs/api-client": "^0.3.0",
+    "@caldera-labs/components": "^1.6.0",
+    "@caldera-labs/processor-ui": "^0.5.0",
+    "@caldera-labs/state": "^0.7.0",
+    "classnames": "^2.2.6",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1",
+    "react-wp-scripts": "0.2.0"
+  },
+  "scripts": {
+    "start": "react-wp-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "test:once": "CI=true react-scripts test --env=jsdom",
+    "test:coverage": "npm test -- --coverage",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
+    "lint": "eslint src/components/**"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "coveralls": "^3.0.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "esdoc": "^1.1.0",
+    "esdoc-ecmascript-proposal-plugin": "^1.0.0",
+    "esdoc-jsx-plugin": "^1.0.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "eslint": "^5.2.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-jest": "^21.17.0",
+    "eslint-plugin-react": "^7.9.1",
+    "react-redux": "^5.0.7",
+    "react-test-renderer": "^16.4.1",
+    "redux": "^4.0.0"
+  }
+}
