@@ -4,8 +4,8 @@
 ### Install
 Requires git and Composer
 
-* `git clone git@github.com:calderawp/caldera-forms-admin.git`
-* `cd caldera-forms-admin`
+* `git clone git@github.com:calderawp/caldera-admin.git`
+* `cd caldera-admin`
 * `composer install`
 * `yarn`
 
