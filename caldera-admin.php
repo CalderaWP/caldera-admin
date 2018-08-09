@@ -61,5 +61,20 @@ add_filter( 'caldera_forms_api_js_config', function($data){
     return $data;
 });
 
+/**
+ * Put react scripts in dev mode when Caldera Forms is in dev mode
+ */
+add_filter( 'reactwpscripts.is_development', function( ){
+    return Caldera_Forms_Render_Assets::should_minify(true);
+} );
 
-add_filter( 'reactwpscripts.is_development', '__return_true' );
+
+/**
+ * Add entries count to form response
+ */
+add_filter( 'caldera_forms_api_prepare_form', function ($form){
+   $form[ 'entries' ] = [
+       'count' => absint( Caldera_Forms_Entry_Bulk::count($form[ 'ID' ] ) )
+   ];
+   return $form;
+});
