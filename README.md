@@ -2,7 +2,7 @@
 
 Caldera Admin v2.
 
-Requires 
+Requires the `project/admin-refactor` branch of Caldera Forms. Which is used by the built in local environment.
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/79cb58ea98b87f591771/maintainability)](https://codeclimate.com/github/CalderaWP/caldera-admin/maintainability)
 
