@@ -6,17 +6,29 @@
  */
 include_once __DIR__ .'/vendor/autoload.php';
 
+/**
+ * Initialize Caldera Admin for Caldera Forms.
+ */
 add_action( 'init', function(){
     $slug = 'caldera-forms-two';
     $adminUi = new \calderawp\CalderaForms\Admin\AdminUi( plugin_dir_path( __FILE__ ), $slug );
     if( class_exists( '\Caldera_Forms_Admin_Assets' ) ){
         \Caldera_Forms_Admin_Assets::set_cf_admin($slug);
-
     }
+
     $adminUi->setUpMenus();
     $adminUi->enqueueAdmin();
 });
 
+
+//************//
+/* Begin Caldera Forms Changes We Probably Need To Merge Into Caldera Forms. */
+//***********//
+
+
+/**
+ * Set up app in admin
+ */
 add_action( 'admin_menu', function () {
 
     /**
@@ -51,6 +63,9 @@ add_action( 'admin_menu', function (){
     }
 });
 
+/**
+ * Add additional data to the CF_ADMIN object printed by WordPress
+ */
 add_filter( 'caldera_forms_api_js_config', function($data){
     $templates = Caldera_Forms_Admin::internal_form_templates();
     $data['templates' ] = array_combine(
