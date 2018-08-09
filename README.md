@@ -48,14 +48,14 @@ NOTE: It is not recommended at this time to install this. It does not work yet.
 A  local development environment is included, and provided. It is used for integration tests. Requires Composer, Docker and Docker Compose.
 
 * Install Local Environment And WordPress "Unit" Test Suite
-- `composer wp-install`
+- `composer wp:install`
 
 You should now have WordPress at [http://localhost:8888/]
 * Username: admin
 * password: password
 
 * (re)Start Server: Once server is installed, you can start it again
-- `composer wp-start`
+- `composer wp:start`
 
 ### Testing
 
@@ -68,15 +68,15 @@ Run these commands from the plugin's root directory.
 * Run All php Test, Sniffs and Lints
     - `composer tests`
 * Run php Unit Tests
-    - `composer unit-tests`
+    - `composer tests:unit`
 * Run WordPress Integration Tests
-    - `composer wp-tests`
+    - `composer wp:tests`
 * Fix All Code Formatting
     - `composer formatting`
 * Run JavaScript Unit Test Watcher
     - `yarn test`
 * Run JavaScript Unit Tests Once
     - `yarn test:once`
-* Test JavaScript Unit Test Coverage
+* Run JavaScript Unit Tests Once and Report Coverage
     - `yarn test:coverage`
 

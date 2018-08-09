@@ -35,11 +35,11 @@
         }
     ],
     "scripts" : {
-        "tests" : "composer fixes && composer sniffs && composer unit-tests && composer wp-tests",
-        "unit-tests": "phpunit --testsuite=unit",
-        "wp-install": "bash ./bin/install-docker.sh",
-        "wp-start": "docker-compose up -d",
-        "wp-tests": "docker-compose run --rm wordpress_phpunit phpunit --configuration phpunit-integration.xml.dist",
+        "tests" : "composer fixes && composer sniffs && composer test:unit && composer wp:tests",
+        "test:unit": "phpunit --testsuite=unit",
+        "wp:install": "bash ./bin/install-docker.sh",
+        "wp:start": "docker-compose up -d",
+        "wp:tests": "docker-compose run --rm wordpress_phpunit phpunit --configuration phpunit-integration.xml.dist",
         "phpunit-v": "phpunit --version",
         "sniffs" : "phpcs php/ && phpcs Tests/",
         "fixes" : "phpcbf php/ && phpcbf Tests/",
