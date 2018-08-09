@@ -1,4 +1,7 @@
 # Caldera (Forms) Admin
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/79cb58ea98b87f591771/maintainability)](https://codeclimate.com/github/CalderaWP/caldera-admin/maintainability)
+
 ## Development
 
 ### Install
