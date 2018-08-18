@@ -20,6 +20,7 @@ services:
       - wordpress:/var/www/html
       - .:/var/www/html/wp-content/plugins/caldera-forms-admin
       - ./vendor/Desertsnowman/caldera-forms:/var/www/html/wp-content/plugins/caldera-forms
+      - ./vendor/calderawp/ghost-runner:/var/www/html/wp-content/plugins/ghost-runner
 
   mysql:
     image: mysql:5.7

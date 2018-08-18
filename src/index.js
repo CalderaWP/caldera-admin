@@ -3,8 +3,13 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 
-ReactDOM.render(
-	<App />,
-	document.getElementById('caldera-forms-admin')
-);
+
+const el = document.getElementById('caldera-forms-admin');
+if( null !== el ){
+	ReactDOM.render(
+		<App />,
+		document.getElementById('caldera-forms-admin')
+	);
+}
+
 

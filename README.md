@@ -24,7 +24,7 @@ This plugin/ whatever makes use of Caldera PHP and JavaScript modules.
 * Caldera API Client - JavaScript API client for Caldera (Forms) data and settings.
 * Caldera Forms Pro API Client - PHP api client for read/write Caldera Forms Pro data.
 
-### Responsiblities
+## Responsibilities
 This plugin is responsible for:
 * Dependency management
 * Wiring Caldera Interop to WordPress REST API.
@@ -32,6 +32,7 @@ This plugin is responsible for:
 * Adding Caldera Forms database structure if not present.
 * Replacing old admin screen with fallbacks.
 * Compiling and optimizing assets.
+
 ## Development
 
 ### Install
@@ -44,22 +45,29 @@ NOTE: It is not recommended at this time to install this. It does not work yet.
 * `composer install`
 * `yarn`
 
-### Local Development Environment
+### Install Local Development Environment
 A  local development environment is included, and provided. It is used for integration tests. Requires Composer, Docker and Docker Compose.
 
 * Install Local Environment And WordPress "Unit" Test Suite
 - `composer wp:install`
+* Activate plugins and import test forms
+- `composer cf:install`
 
-You should now have WordPress at [http://localhost:8888/]
+You should now have WordPress at [http://localhost:8888/](http://localhost:8888/)
 * Username: admin
 * password: password
+
+### Using Already Installed Local Development Environment
 
 * (re)Start Server: Once server is installed, you can start it again
 - `composer wp:start`
 
+* (re)Activate Plugins
+- `composer cf:activate`
+
 ### Testing
 
-#### Install
+#### Install Test Suites
 Follow the steps above to create local development environment, then you can use the commands listed in the next section.
 
 #### Use

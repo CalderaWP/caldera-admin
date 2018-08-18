@@ -10,11 +10,12 @@ include_once __DIR__ .'/vendor/autoload.php';
  * Initialize Caldera Admin for Caldera Forms.
  */
 add_action( 'init', function(){
-    $slug = 'caldera-forms-two';
-    $adminUi = new \calderawp\CalderaForms\Admin\AdminUi( plugin_dir_path( __FILE__ ), $slug );
-    if( class_exists( '\Caldera_Forms_Admin_Assets' ) ){
-        \Caldera_Forms_Admin_Assets::set_cf_admin($slug);
+    $pageSlug = 'caldera-forms-two';
+    if( ! isset($_GET['page']) || $pageSlug !== $_GET['page'] ){
+            return;
     }
+    $adminUi = new \calderawp\CalderaForms\Admin\AdminUi( plugin_dir_path( __FILE__ ), $pageSlug );
+
 
     $adminUi->setUpMenus();
     $adminUi->enqueueAdmin();
@@ -72,6 +73,14 @@ add_filter( 'caldera_forms_api_js_config', function($data){
             array_keys($templates),
             array_column($templates,'name' )
         );
+
+    $forms = Caldera_Forms_Forms::get_forms(true );
+
+    $controller = new Caldera_Forms_API_Forms(  );
+    $request = new WP_REST_Request();
+    $request->set_param( 'details', true );
+    $forms = $controller->get_items( $request );
+    $data[ 'forms' ] = json_encode( $forms );
 
     return $data;
 });

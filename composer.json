@@ -32,6 +32,10 @@
         {
             "type": "git",
             "url": "https://github.com/CalderaWP/caldera-forms"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/CalderaWP/caldera-ghost-runner"
         }
     ],
     "scripts" : {
@@ -40,6 +44,9 @@
         "wp:install": "bash ./bin/install-docker.sh",
         "wp:start": "docker-compose up -d",
         "wp:tests": "docker-compose run --rm wordpress_phpunit phpunit --configuration phpunit-integration.xml.dist",
+        "wp:destroy": "docker-compose rm --stop --force",
+        "cf:install": "bash ./bin/caldera-form.sh",
+        "cf:activate": "docker-compose run --rm cli wp plugin activate caldera-forms && docker-compose run --rm cli wp plugin activate caldera-forms-admin",
         "phpunit-v": "phpunit --version",
         "sniffs" : "phpcs php/ && phpcs Tests/",
         "fixes" : "phpcbf php/ && phpcbf Tests/",
@@ -60,6 +67,7 @@
         "squizlabs/php_codesniffer": "^3.2",
         "jakub-onderka/php-parallel-lint": "^1.0",
         "johnpbloch/wordpress" : "*",
-        "Desertsnowman/caldera-forms" : "dev-project/admin-refactor"
+        "Desertsnowman/caldera-forms" : "dev-project/admin-refactor",
+        "calderawp/ghost-runner" : "*"
     }
 }

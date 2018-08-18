@@ -34,6 +34,10 @@ class AdminUi
 		ReactWPScripts\enqueue_assets($this->pluginDirPath, [
 			'handle' => $this->slug
 		]);
+
+        if( class_exists( '\Caldera_Forms_Admin_Assets' ) ){
+            \Caldera_Forms_Admin_Assets::set_cf_admin($this->slug);
+        }
 	}
 
 	/**
