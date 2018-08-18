@@ -21,7 +21,8 @@ tests_add_filter('muplugins_loaded', '_manually_load_plugin');
  */
 function _manually_load_plugin()
 {
-    require dirname(__FILE__, 2) . '/caldera-forms-admin.php';
+    require dirname(__FILE__, 2) . '/vendor/Desertsnowman/caldera-forms/caldera-core.php';
+    require dirname(__FILE__, 2) . '/caldera-admin.php';
 }
 
 // Start up the WP testing environment.
