@@ -2,7 +2,7 @@
 /**
  * Plugin name: Caldera (Forms) Admin
  * Description: Plugin for developing the new Caldera Admin app for WordPress
- * Version: 0.0.1
+ * Version: 0.0.2
  */
 include_once __DIR__ .'/vendor/autoload.php';
 
@@ -102,3 +102,28 @@ add_filter( 'caldera_forms_api_prepare_form', function ($form){
    ];
    return $form;
 });
+
+
+/**
+ * Add random entries to all forms on activate
+ */
+add_action( 'init', function(){
+   if( -1 !== get_option( 'CF_ADMIN_2_VER', -1 ) ){
+       caldera_admin_random_form_data();
+      update_option('CF_ADMIN_2_VER', 1 );
+   }
+});
+
+/**
+ * Add random entries to all forms
+ */
+function caldera_admin_random_form_data(){
+    $forms = Caldera_Forms_Forms::get_forms(false);
+    foreach ($forms as $form ){
+        $form = Caldera_Forms_Forms::get_form($form);
+        $creator = new \calderawp\CalderaForms\Admin\Entries\Create($form);
+        $creator->createEntry();
+        $creator->createEntry();
+        $creator->createEntry();
+    }
+}

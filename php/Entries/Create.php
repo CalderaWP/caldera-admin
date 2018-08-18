@@ -102,14 +102,8 @@ class Create
             $data = array();
             $i = 0;
             foreach ($this->form['fields'] as $field_id => $field_config) {
-                if (1 == $i) {
-                    $data[$field_id] = $field_id . '_' . rand();
-                } else {
-                    $data[$field_id] = array(
-                        rand(),
-                        5 => rand(), rand(), 'batman'
-                    );
-                }
+                $data[$field_id] = 'Randomly Generated' . $field_id . '_' . rand();
+
                 if (0 == $i) {
                     $i = 1;
                 } else {
