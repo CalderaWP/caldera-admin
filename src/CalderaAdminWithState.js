@@ -14,7 +14,7 @@ import {prepareProSettings} from "./components/Settings/ProSettings/prepareProSe
  * @param {Object} select
  * @return {{forms: *}}
  */
-export const selectors = (select) => {
+export const selectors = (select,ownProps) => {
 	const {
 		getForm,
 		getForms,
@@ -39,7 +39,7 @@ export const selectors = (select) => {
 
 			}
 		},
-		forms: getForms(),
+		forms: ownProps.forms,
 		getForm,
 		getForms,
 		getFormPreview,
@@ -67,8 +67,9 @@ export const dispatchers = (dispatch) => {
  * Main admin component wrapped in state
  */
 export const CalderaAdminWithState =  compose(
-	withSelect(select => {
-		return selectors(select);
+	withSelect((select, ownProps) => {
+		console.log(ownProps);
+		return selectors(select,ownProps);
 	}),
 	withDispatch(dispatch => {
 		return dispatchers(dispatch);

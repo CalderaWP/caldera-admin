@@ -5,7 +5,6 @@ import {
 } from "./CalderaAdminWithState";
 import CalderaAdmin from './CalderaAdmin';
 import store,{CALDERA_FORMS_ADMIN_STORE} from "./store";
-import AdminApp from './AdminApp';
 import apiClients from './apiClients';
 import components from './components';
 import screens from './screens';
@@ -15,7 +14,6 @@ export default {
 	CalderaAdmin,
 	store,
 	CALDERA_FORMS_ADMIN_STORE,
-	AdminApp,
 	apiClients,
 	dispatchers,
 	selectors,

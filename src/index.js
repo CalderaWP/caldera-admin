@@ -1,7 +1,17 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import domReady from '@wordpress/dom-ready';
 
-import AdminApp from './AdminApp';
+domReady( () => {
 
-const app = new AdminApp();
-app.renderToDom( 'caldera-forms-admin' );
+	const el = document.getElementById('caldera-forms-admin');
+	if( null !== el ){
+		ReactDOM.render(
+			<App />,
+			document.getElementById('caldera-forms-admin')
+		);
+	}
 
+} );
 
