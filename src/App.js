@@ -9,7 +9,7 @@ const {actions} = CalderaState.store;
 const {
 	AdminApp,
 	//dispatchers,
-	store,
+	//store,
 	//apiClients,
 	CalderaAdmin,
 } = CalderaAdminScreen;
@@ -33,6 +33,8 @@ class App extends React.Component {
 		this.setFormsViaApi = this.setFormsViaApi.bind(this);
 		this.setForms = this.setForms.bind(this);
 		this.setEntryViewerForm = this.setEntryViewerForm.bind(this);
+		this.createForm = this.createForm.bind(this);
+		this.getTemplates = this.getTemplates.bind(this);
 	}
 
 	componentDidMount(){
@@ -65,6 +67,19 @@ class App extends React.Component {
 	}
 
 
+	createForm(newForm){
+		this.app.getApiClients().formsAdminApiClient.createForm().then( r => {
+			console.log(r);
+			this.setFormsViaApi();
+		});
+	}
+
+	getTemplates(){
+		return this.app.getStore().getState()['CALDERA_FORMS/FORMS/TEMPLATES'];
+	}
+
+
+
 	render()
 	{
 
@@ -74,6 +89,8 @@ class App extends React.Component {
 					forms={this.state.forms}
 					openEntryViewerForForm={this.setEntryViewerForm}
 					entries={this.state.entries}
+					onCreateForm={this.createForm}
+					templates={this.getTemplates()}
 				/>
 			</React.Fragment>
 		);

@@ -15,9 +15,9 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@caldera-labs/admin-client@^0.3":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@caldera-labs/admin-client/-/admin-client-0.3.0.tgz#8deee6d3c31ffe856f63e048687f0f054e0a350c"
+"@caldera-labs/admin-client@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@caldera-labs/admin-client/-/admin-client-0.3.1.tgz#957863cc1739ffd1c249597e794dce68871c7391"
   dependencies:
     "@caldera-labs/api-client" "0"
     "@caldera-labs/components" "^1.6.0"
