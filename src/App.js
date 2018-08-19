@@ -62,7 +62,7 @@ class App extends React.Component {
 	}
 
 	getTemplates(){
-		return {}
+		return []
 	}
 
 	render()

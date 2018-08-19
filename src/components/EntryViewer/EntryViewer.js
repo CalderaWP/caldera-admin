@@ -116,7 +116,7 @@ export class EntryViewer extends React.PureComponent {
 						className={EntryViewer.classNames.nextNav}
 						isLarge
 						isDefault
-						isDisabled={this.isPreviousDisabled()}
+						isdisabled={this.isPreviousDisabled().toString()}
 						onClick={this.onPrevious}
 					>
 						Previous Page
@@ -128,7 +128,7 @@ export class EntryViewer extends React.PureComponent {
 						className={EntryViewer.classNames.nextNav}
 						isLarge
 						isDefault
-						isDisabled={this.isNextDisabled()}
+						isdisabled={this.isNextDisabled().toString()}
 						onClick={this.onNext}
 					>
 						Next Page
