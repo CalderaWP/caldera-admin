@@ -50,7 +50,6 @@ class App extends React.Component {
 
 	}
 
-
 	setFormsViaApi(){
 		this.app.getApiClients().formsAdminApiClient.getForms().then( r => {
 			this.app.getStore().dispatch(
@@ -77,8 +76,6 @@ class App extends React.Component {
 	getTemplates(){
 		return this.app.getStore().getState()['CALDERA_FORMS/FORMS/TEMPLATES'];
 	}
-
-
 
 	render()
 	{
