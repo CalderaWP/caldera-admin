@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Remote post  Component Matches snapshot 1`] = `
+<div
+  className={null}
+>
+  <article
+    id="post-42"
+  >
+    <h2>
+      Hello To Roy
+    </h2>
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<p>Hi Roy</p>",
+        }
+      }
+    />
+  </article>
+</div>
+`;
+
+exports[`Remote post  Component Matches snapshot with class names 1`] = `
+<div
+  className="remote-post-for-help"
+>
+  <article
+    id="post-42"
+  >
+    <h2>
+      Hello To Roy
+    </h2>
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<p>Hi Roy</p>",
+        }
+      }
+    />
+  </article>
+</div>
+`;

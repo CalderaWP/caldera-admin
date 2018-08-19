@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GeneralSettings component Matches snapshot with minimal props 1`] = `
+<div
+  className=""
+>
+  <div
+    className="caldera-config-field-setup"
+  >
+    <div
+      className="caldera-config-group"
+    >
+      <div
+        className="caldera-config-field"
+      >
+        <label
+          htmlFor="SETTINGS/STYLE_INCLUDES/FORM"
+        >
+          Form Styles
+        </label>
+        <input
+          aria-describedby="SETTINGS/STYLE_INCLUDES/FORM-description"
+          className="field-config field-config"
+          defaultChecked={undefined}
+          disabled={false}
+          id="SETTINGS/STYLE_INCLUDES/FORM"
+          onBlur={undefined}
+          onChange={[Function]}
+          onFocus={undefined}
+          required={false}
+          type="checkbox"
+        />
+        <p
+          className="description"
+          id="SETTINGS/STYLE_INCLUDES/FORM-description"
+        >
+          Includes Bootstrap 3 styles on the frontend for form fields and buttons
+        </p>
+      </div>
+    </div>
+    <div
+      className="caldera-config-group"
+    >
+      <div
+        className="caldera-config-field"
+      >
+        <label
+          htmlFor="SETTINGS/STYLE_INCLUDES/STYLE_ALERT"
+        >
+          Alert Styles
+        </label>
+        <input
+          aria-describedby="SETTINGS/STYLE_INCLUDES/STYLE_ALERT-description"
+          className="field-config field-config"
+          defaultChecked={undefined}
+          disabled={false}
+          id="SETTINGS/STYLE_INCLUDES/STYLE_ALERT"
+          onBlur={undefined}
+          onChange={[Function]}
+          onFocus={undefined}
+          required={false}
+          type="checkbox"
+        />
+        <p
+          className="description"
+          id="SETTINGS/STYLE_INCLUDES/STYLE_ALERT-description"
+        >
+          Includes Bootstrap 3 styles on the frontend for form alert notices
+        </p>
+      </div>
+    </div>
+    <div
+      className="caldera-config-group"
+    >
+      <div
+        className="caldera-config-field"
+      >
+        <label
+          htmlFor="SETTINGS/STYLE_INCLUDES/FORM"
+        >
+          Grid
+        </label>
+        <input
+          aria-describedby="SETTINGS/STYLE_INCLUDES/FORM-description"
+          className="field-config field-config"
+          defaultChecked={undefined}
+          disabled={false}
+          id="SETTINGS/STYLE_INCLUDES/FORM"
+          onBlur={undefined}
+          onChange={[Function]}
+          onFocus={undefined}
+          required={false}
+          type="checkbox"
+        />
+        <p
+          className="description"
+          id="SETTINGS/STYLE_INCLUDES/FORM-description"
+        >
+          Includes Bootstrap 3 styles on the frontend for form grid layouts
+        </p>
+      </div>
+    </div>
+    <div
+      className="caldera-config-group"
+    >
+      <div
+        className="caldera-config-field"
+      >
+        <label
+          htmlFor="SETTINGS/CDN"
+        >
+          Enable Free CDN
+        </label>
+        <input
+          aria-describedby="SETTINGS/CDN-description"
+          className="field-config field-config"
+          defaultChecked={undefined}
+          disabled={false}
+          id="SETTINGS/CDN"
+          onBlur={undefined}
+          onChange={[Function]}
+          onFocus={undefined}
+          required={false}
+          type="checkbox"
+        />
+        <p
+          className="description"
+          id="SETTINGS/CDN-description"
+        >
+          Some usage data will be shared with CDN providers
+        </p>
+      </div>
+    </div>
+  </div>
+  <button
+    autoFocus={undefined}
+    className="components-button"
+    disabled={undefined}
+    onClick={undefined}
+    type="button"
+  />
+</div>
+`;

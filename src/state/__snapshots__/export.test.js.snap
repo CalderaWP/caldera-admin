@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`export has the right types and keys 1`] = `"{\\"prepareSettings\\":\\"function\\",\\"settingsProp\\":\\"function\\",\\"resolvers\\":\\"object\\",\\"formTemplateReducer\\":\\"function\\"}"`;

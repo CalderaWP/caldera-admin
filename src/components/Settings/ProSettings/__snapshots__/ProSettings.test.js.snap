@@ -1,0 +1,387 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProSettings component Matches snapshot with minimal props 1`] = `
+<div
+  className="caldera-forms-pro-settings"
+>
+  <div
+    aria-orientation="vertical"
+    className="components-tab-panel__tabs"
+    onFocus={undefined}
+    onKeyDown={[Function]}
+    role="tablist"
+  >
+    <button
+      aria-controls="0-apiKeys-view"
+      aria-selected={true}
+      className="pro-settings is-active"
+      id="0-apiKeys"
+      onClick={[Function]}
+      role="tab"
+      tabIndex={null}
+    >
+      Api Keys
+    </button>
+    <button
+      aria-controls="0-generalSettings-view"
+      aria-selected={false}
+      className="pro-settings "
+      id="0-generalSettings"
+      onClick={[Function]}
+      role="tab"
+      tabIndex={-1}
+    >
+      Caldera FormsSlot Pro Settings
+    </button>
+    <button
+      aria-controls="0-formSettings-view"
+      aria-selected={false}
+      className="pro-form-settings "
+      id="0-formSettings"
+      onClick={[Function]}
+      role="tab"
+      tabIndex={-1}
+    >
+      Form Settings
+    </button>
+  </div>
+  <div
+    aria-labelledby="0-apiKeys"
+    className="components-tab-panel__tab-content"
+    id="0-apiKeys-view"
+    role="tabpanel"
+    tabIndex="0"
+  >
+    <div
+      className="caldera-config-field-setup"
+    >
+      <div
+        className="caldera-config-group"
+      >
+        <div
+          className="caldera-config-field"
+        >
+          <label
+            htmlFor="proPublicKey"
+          >
+            Public Key
+          </label>
+          <input
+            aria-describedby="proPublicKey-description"
+            className="field-config field-config"
+            disabled={false}
+            id="proPublicKey"
+            onBlur={undefined}
+            onChange={[Function]}
+            onFocus={undefined}
+            required={false}
+            type="text"
+            value=""
+          />
+          <p
+            className="description"
+            id="proPublicKey-description"
+          >
+            Public Key For Caldera FormsSlot Pro
+          </p>
+        </div>
+      </div>
+      <div
+        className="caldera-config-group"
+      >
+        <div
+          className="caldera-config-field"
+        >
+          <label
+            htmlFor="propPrivateKey"
+          >
+            Private Key
+          </label>
+          <input
+            aria-describedby="propPrivateKey-description"
+            className="field-config field-config"
+            disabled={false}
+            id="propPrivateKey"
+            onBlur={undefined}
+            onChange={[Function]}
+            onFocus={undefined}
+            required={false}
+            type="text"
+            value=""
+          />
+          <p
+            className="description"
+            id="propPrivateKey-description"
+          >
+            Private Key For Caldera FormsSlot Pro
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProSettings component tab content Shows apiKeys tab 1`] = `
+<div
+  className="caldera-config-field-setup"
+>
+  <div
+    className="caldera-config-group"
+  >
+    <div
+      className="caldera-config-field"
+    >
+      <label
+        htmlFor="proPublicKey"
+      >
+        Public Key
+      </label>
+      <input
+        aria-describedby="proPublicKey-description"
+        className="field-config field-config"
+        disabled={false}
+        id="proPublicKey"
+        onBlur={undefined}
+        onChange={[Function]}
+        onFocus={undefined}
+        required={false}
+        type="text"
+        value=""
+      />
+      <p
+        className="description"
+        id="proPublicKey-description"
+      >
+        Public Key For Caldera FormsSlot Pro
+      </p>
+    </div>
+  </div>
+  <div
+    className="caldera-config-group"
+  >
+    <div
+      className="caldera-config-field"
+    >
+      <label
+        htmlFor="propPrivateKey"
+      >
+        Private Key
+      </label>
+      <input
+        aria-describedby="propPrivateKey-description"
+        className="field-config field-config"
+        disabled={false}
+        id="propPrivateKey"
+        onBlur={undefined}
+        onChange={[Function]}
+        onFocus={undefined}
+        required={false}
+        type="text"
+        value=""
+      />
+      <p
+        className="description"
+        id="propPrivateKey-description"
+      >
+        Private Key For Caldera FormsSlot Pro
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProSettings component tab content Shows apiKeys tab 2`] = `
+<div
+  className="caldera-config-field-setup"
+>
+  <div
+    className="caldera-config-group"
+  >
+    <div
+      className="caldera-config-field"
+    >
+      <label
+        htmlFor="proPublicKey"
+      >
+        Public Key
+      </label>
+      <input
+        aria-describedby="proPublicKey-description"
+        className="field-config field-config"
+        disabled={false}
+        id="proPublicKey"
+        onBlur={undefined}
+        onChange={[Function]}
+        onFocus={undefined}
+        required={false}
+        type="text"
+        value=""
+      />
+      <p
+        className="description"
+        id="proPublicKey-description"
+      >
+        Public Key For Caldera FormsSlot Pro
+      </p>
+    </div>
+  </div>
+  <div
+    className="caldera-config-group"
+  >
+    <div
+      className="caldera-config-field"
+    >
+      <label
+        htmlFor="propPrivateKey"
+      >
+        Private Key
+      </label>
+      <input
+        aria-describedby="propPrivateKey-description"
+        className="field-config field-config"
+        disabled={false}
+        id="propPrivateKey"
+        onBlur={undefined}
+        onChange={[Function]}
+        onFocus={undefined}
+        required={false}
+        type="text"
+        value=""
+      />
+      <p
+        className="description"
+        id="propPrivateKey-description"
+      >
+        Private Key For Caldera FormsSlot Pro
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProSettings component tab content Shows freeTrial tab 1`] = `
+<div
+  className="caldera-forms-pro-free-trial"
+>
+  <p>
+    Ready to try Caldera Forms Pro? Plans start at just 14.99/ month with a 7 day free trial.
+  </p>
+  <div>
+    <a
+      autoFocus={undefined}
+      className="components-button button is-button is-default is-large is-link"
+      href="https://calderaforms.com/doc/caldera-forms-pro-getting-started/?utm_source=wp-admin&utm_campaign=pro-screen&utm_term=not-connected"
+      target={undefined}
+    >
+      Documentation
+    </a>
+    <a
+      autoFocus={undefined}
+      className="components-button button is-button is-default is-large is-link"
+      href="https://calderaforms.com/checkout?edd_action=add_to_cart&download_id=64101&edd_options[price_id]=1?utm_source=wp-admin&utm_campaign=pro-screen&utm_term=not-connected"
+      target={undefined}
+    >
+      Start Free Trial
+    </a>
+  </div>
+</div>
+`;
+
+exports[`ProSettings component tab content Shows generalSettings tab 1`] = `
+<div
+  className="caldera-config-field-setup"
+>
+  <div
+    className="caldera-config-group"
+  >
+    <div
+      className="caldera-config-field"
+    >
+      <label
+        htmlFor="proPublicKey"
+      >
+        Public Key
+      </label>
+      <input
+        aria-describedby="proPublicKey-description"
+        className="field-config field-config"
+        disabled={false}
+        id="proPublicKey"
+        onBlur={undefined}
+        onChange={[Function]}
+        onFocus={undefined}
+        required={false}
+        type="text"
+        value=""
+      />
+      <p
+        className="description"
+        id="proPublicKey-description"
+      >
+        Public Key For Caldera FormsSlot Pro
+      </p>
+    </div>
+  </div>
+  <div
+    className="caldera-config-group"
+  >
+    <div
+      className="caldera-config-field"
+    >
+      <label
+        htmlFor="propPrivateKey"
+      >
+        Private Key
+      </label>
+      <input
+        aria-describedby="propPrivateKey-description"
+        className="field-config field-config"
+        disabled={false}
+        id="propPrivateKey"
+        onBlur={undefined}
+        onChange={[Function]}
+        onFocus={undefined}
+        required={false}
+        type="text"
+        value=""
+      />
+      <p
+        className="description"
+        id="propPrivateKey-description"
+      >
+        Private Key For Caldera FormsSlot Pro
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProSettings component tab content Shows whatIs tab 1`] = `
+<div
+  className="caldera-forms-pro-what-is"
+>
+  <p>
+    Caldera Forms Pro is an app + plugin that makes forms easy.
+  </p>
+  <h3>
+    Benefits
+  </h3>
+  <ul>
+    <li>
+      Enhanced Email Delivery
+    </li>
+    <li>
+      Form To PDF
+    </li>
+    <li>
+      Priority Support
+    </li>
+    <li>
+      Add-ons Included in Yearly Plans
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`prepareProSettings finds all the defaults 1`] = `"{\\"connected\\":false,\\"apiKeys\\":{\\"proPublicKey\\":\\"\\",\\"propPrivateKey\\":\\"\\"},\\"generalSettings\\":{\\"enhancedDelivery\\":true,\\"logLevel\\":400},\\"forms\\":{}}"`;

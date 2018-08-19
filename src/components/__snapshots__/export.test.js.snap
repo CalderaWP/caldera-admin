@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`export has the right types and keys 1`] = `"{\\"EntryViewer\\":\\"object\\",\\"FormsList\\":\\"object\\",\\"NewForm\\":\\"object\\",\\"RemotePost\\":\\"object\\",\\"Layout\\":\\"object\\",\\"util\\":\\"object\\"}"`;
