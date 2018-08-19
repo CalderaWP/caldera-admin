@@ -8,6 +8,8 @@ import {Notice} from '@wordpress/components'
 
 export default class FormsSlot extends AdminSlot {
 
+
+
 	getContent(forms) {
 		if (0 !== Object.keys(forms).length) {
 			return (
@@ -46,7 +48,7 @@ export default class FormsSlot extends AdminSlot {
 						{this.getContent(forms)}
 					</FormAdminMainView.Content>
 					<FormAdminHelpView.Content>
-						Help Content From Forms component
+						{this.displayHelpContent()}
 					</FormAdminHelpView.Content>
 				</React.Fragment>
 				}

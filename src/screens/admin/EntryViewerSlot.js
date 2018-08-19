@@ -30,7 +30,7 @@ export default class EntryViewerSlot extends AdminSlot {
 						/>
 					</FormAdminMainView.Content>
 					<FormAdminHelpView.Content>
-						Help Content
+						{this.displayHelpContent()}
 					</FormAdminHelpView.Content>
 
 				</React.Fragment>

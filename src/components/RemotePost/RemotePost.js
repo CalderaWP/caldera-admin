@@ -2,6 +2,7 @@ import React from 'react';
 import {postPropTypes} from "./propTypes";
 import EmbedContainer from 'react-oembed-container';
 import PropTypes from 'prop-types'
+
 /**
  * The main container component for the RemotePost
  *
@@ -10,7 +11,18 @@ import PropTypes from 'prop-types'
  * @constructor
  */
 export const RemotePost = (props) => {
-	const { post } = props;
+	const {post} = props;
+
+	const Content = () => {
+		if (props.showExcerpt) {
+			return (<div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}/>);
+
+		}
+		return (
+			<div dangerouslySetInnerHTML={{__html: post.content.rendered}}/>
+		);
+
+	}
 	return (
 		<EmbedContainer
 			markup={post.content.rendered}
@@ -21,9 +33,10 @@ export const RemotePost = (props) => {
 				id={`post-${post.id}`}
 			>
 				<h2>
-					{ post.title.rendered }
+					{post.title.rendered}
 				</h2>
-				<div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+				{Content()}
+				<a href={post.link}>Read More</a>
 			</article>
 
 		</EmbedContainer>
@@ -32,6 +45,11 @@ export const RemotePost = (props) => {
 
 RemotePost.propTypes = {
 	...postPropTypes,
-	className: PropTypes.string
+	className: PropTypes.string,
+	showExcerpt: PropTypes.bool
 
 };
+
+RemotePost.defaultProps = {
+	showExcerpt: true
+}

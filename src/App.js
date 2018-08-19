@@ -16,7 +16,8 @@ class App extends React.Component {
 			forms: {},
 			entryViewerForm: '',
 			entryPage: 1,
-			entries: {}
+			entries: {},
+			loading: true,
 		};
 		this.componentDidMount = this.componentDidMount.bind(this);
 		this.setFormsViaApi = this.setFormsViaApi.bind(this);
@@ -46,6 +47,9 @@ class App extends React.Component {
 
 	setFormsViaApi(){
 		this.getApiClients().formsAdminApiClient.getForms().then( r => {
+			this.setState({
+				loading: false
+			});
 			this.setForms(r);
 		});
 	}
@@ -71,6 +75,7 @@ class App extends React.Component {
 		return (
 			<React.Fragment>
 				<CalderaAdmin
+					loading={this.state.loading}
 					forms={this.state.forms}
 					openEntryViewerForForm={this.setEntryViewerForm}
 					entries={this.state.entries}

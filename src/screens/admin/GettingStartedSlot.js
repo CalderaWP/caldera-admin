@@ -2,53 +2,39 @@ import React from 'react';
 import FormAdminToolbar from './FormAdminToolbar';
 import FormAdminMainView from './FormAdminMainView';
 import AdminSlot from "./AdminSlot";
-import {collectionTypes} from "../../types";
-import {Settings} from "../../components/Settings/Settings";
 import FormAdminHelpView from './FormAdminHelpView';
+
+
 /**
- * Container for SettingsSlot UI in main admin screen
  */
-export default class SettingsSlot extends AdminSlot {
+export default class GettingStartedSlot extends AdminSlot {
 
 	render() {
-		const {forms,settings} = this.props;
-
 		return (
 			<div>
 				<FormAdminToolbar.NavBar
-					label="Settings"
+					label="Getting Started"
 					onActive={this.handleActive}
 					onDeactive={this.handleDeactive}
 					isActive={this.state.active}
 				/>
 				{this.state.active &&
-				<div>
+				<React.Fragment>
 
 					<FormAdminMainView.Content>
-						<Settings
-							onTabSelect={() => {}}
-							forms={forms}
-							settings={settings}
-						/>
+						{this.displayHelpContent()}
 					</FormAdminMainView.Content>
 					<FormAdminHelpView.Content>
 						{this.displayHelpContent()}
 					</FormAdminHelpView.Content>
-				</div>
+
+				</React.Fragment>
 				}
+
+
 			</div>
 		);
 	}
 
 
 }
-
-
-SettingsSlot.propTypes = {
-	forms: collectionTypes.formsType,
-	settings: collectionTypes.settingsType,
-};
-SettingsSlot.defaultProps = {
-	forms: {},
-	settings: {}
-};

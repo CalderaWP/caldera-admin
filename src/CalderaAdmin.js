@@ -7,6 +7,7 @@ import CreateFormSlot from "./screens/admin/CreateFormSlot";
 import FormsSlot from "./screens/admin/FormsSlot";
 import SettingsSlot from "./screens/admin/SettingsSlot";
 import EntryViewerSlot from "./screens/admin/EntryViewerSlot";
+import GettingStartedSlot from './screens/admin/GettingStartedSlot';
 import {collectionTypes} from './types'
 import {PRO_CONNECTED, PRO_SETTINGS} from "./components/Settings/ProSettings/proSettingsType";
 import statusType from "./components/Layout/statusType";
@@ -30,6 +31,7 @@ class CalderaAdmin extends Component {
 		this.isProConnected = this.isProConnected.bind(this);
 		this.onOpenEntryViewerForForm = this.onOpenEntryViewerForForm.bind(this);
 		this.showEntryViewer = this.showEntryViewer.bind(this);
+		this.renderIfHasForms = this.renderIfHasForms.bind(this);
 	}
 
 	/**
@@ -85,25 +87,31 @@ class CalderaAdmin extends Component {
 	 * @inheritDoc
 	 */
 	render() {
+		if( this.props.loading ){
+			return (
+				<span>Loading</span>
+			)
+		}
+
+		if( 0 < Object.keys( this.props.forms ).length ){
+			return this.renderIfHasForms();
+
+		}
+
 		const {
-			forms,
 			mainStatus,
-			settings,
 			updateSettings,
-			entries,
-			templates
+			templates,
+			forms,
+			settings
 		} = this.props;
+
 		return (
-			<div>
+			<React.Fragment>
 				<SlotFillProvider>
 					<FormAdminToolbar
 						isProConnected={this.isProConnected()}
 						mainStatus={mainStatus}
-					/>
-					<FormsSlot
-						forms={forms}
-						onFormUpdate={this.onFormUpdate}
-						openEntryViewerForForm={this.onOpenEntryViewerForForm}
 					/>
 					<CreateFormSlot
 						forms={forms}
@@ -114,18 +122,66 @@ class CalderaAdmin extends Component {
 						forms={forms}
 						settings={settings}
 						updateSeqttings={updateSettings}
+						helpContentCategory={548}
+					/>
+					<GettingStartedSlot
+						helpContentCategory={550}
+
+					/>
+
+				</SlotFillProvider>
+
+			</React.Fragment>
+		)
+
+
+	}
+
+	renderIfHasForms() {
+		const {
+			forms,
+			mainStatus,
+			settings,
+			updateSettings,
+			entries,
+			templates
+		} = this.props;
+		return (
+			<React.Fragment>
+				<SlotFillProvider>
+					<FormAdminToolbar
+						isProConnected={this.isProConnected()}
+						mainStatus={mainStatus}
+					/>
+					<FormsSlot
+						forms={forms}
+						onFormUpdate={this.onFormUpdate}
+						openEntryViewerForForm={this.onOpenEntryViewerForForm}
+						helpContentCategory={549}
+					/>
+					<CreateFormSlot
+						forms={forms}
+						onCreateForm={this.onCreateForm}
+						templates={templates}
+					/>
+					<SettingsSlot
+						forms={forms}
+						settings={settings}
+						updateSeqttings={updateSettings}
+						helpContentCategory={548}
 					/>
 					{this.showEntryViewer() &&
-						<EntryViewerSlot
-							form={this.state.entryViewerForm}
-							entries={entries}
-						/>
+					<EntryViewerSlot
+						form={this.state.entryViewerForm}
+						entries={entries}
+						helpContentCategory={551}
+					/>
 					}
 					<FormAdminMainView/>
 					<FormAdminHelpView/>
 
 				</SlotFillProvider>
-			</div>
+			</React.Fragment>
 		);
 	}
 }
@@ -144,6 +200,7 @@ CalderaAdmin.propTypes = {
 		settings: settingsType,
 		mainStatus: statusType,
 	},
+	loading: PropTypes.bool,
 	openEntryViewerForForm: PropTypes.func,
 	onCreateForm: PropTypes.PropTypes.func,
 	templates: PropTypes.oneOfType([
