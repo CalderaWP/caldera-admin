@@ -4,7 +4,7 @@
   "public": "true",
   "license": "GPL-2.0",
   "dependencies": {
-    "@caldera-labs/admin-client": "0.3.1",
+    "@caldera-labs/admin-client": "^0.4",
     "@caldera-labs/api-client": "^0.3",
     "@caldera-labs/components": "^1.6",
     "@caldera-labs/processor-ui": "^0.5",
