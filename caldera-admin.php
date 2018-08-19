@@ -4,20 +4,22 @@
  * Description: Plugin for developing the new Caldera Admin app for WordPress
  * Version: 0.0.2
  */
-include_once __DIR__ .'/vendor/autoload.php';
+include_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Initialize Caldera Admin for Caldera Forms.
  */
-add_action( 'init', function(){
+add_action('init', function () {
     $pageSlug = 'caldera-forms-two';
-    if( ! isset($_GET['page']) || $pageSlug !== $_GET['page'] ){
-            return;
-    }
-    $adminUi = new \calderawp\CalderaForms\Admin\AdminUi( plugin_dir_path( __FILE__ ), $pageSlug );
+
+    $adminUi = new \calderawp\CalderaForms\Admin\AdminUi(plugin_dir_path(__FILE__), $pageSlug);
 
 
     $adminUi->setUpMenus();
+    if (!isset($_GET['page']) || $pageSlug !== $_GET['page']) {
+        return;
+    }
+
     $adminUi->enqueueAdmin();
 });
 
@@ -30,7 +32,7 @@ add_action( 'init', function(){
 /**
  * Set up app in admin
  */
-add_action( 'admin_menu', function () {
+add_action('admin_menu', function () {
 
     /**
      * Replace assets for Caldera Forms main admin page
@@ -57,69 +59,72 @@ add_action( 'admin_menu', function () {
 /**
  * Remove Caldera Forms menu
  */
-add_action( 'admin_menu', function (){
-    remove_menu_page( Caldera_Forms::PLUGIN_SLUG );
-    if( class_exists('Caldera_Forms' ) ){
-        remove_menu_page( Caldera_Forms::PLUGIN_SLUG );
+add_action('admin_menu', function () {
+    remove_menu_page(Caldera_Forms::PLUGIN_SLUG);
+    if (class_exists('Caldera_Forms')) {
+        remove_menu_page(Caldera_Forms::PLUGIN_SLUG);
     }
 });
 
 /**
  * Add additional data to the CF_ADMIN object printed by WordPress
  */
-add_filter( 'caldera_forms_api_js_config', function($data){
+add_filter('caldera_forms_api_js_config', function ($data) {
     $templates = Caldera_Forms_Admin::internal_form_templates();
-    $data['templates' ] = array_combine(
-            array_keys($templates),
-            array_column($templates,'name' )
-        );
+    $data['templates'] = array_combine(
+        array_keys($templates),
+        array_column($templates, 'name')
+    );
 
-    $forms = Caldera_Forms_Forms::get_forms(true );
-
-    $controller = new Caldera_Forms_API_Forms(  );
+    $controller = new Caldera_Forms_API_Forms();
     $request = new WP_REST_Request();
-    $request->set_param( 'details', true );
-    $forms = $controller->get_items( $request );
-    $data[ 'forms' ] = json_encode( $forms );
+    $request->set_param('details', true);
+    $forms = $controller->get_items($request);
+    $data['forms'] = json_encode($forms);
 
     return $data;
 });
 
+add_filter('caldera_forms_render_assets_minify', '__return_true');
+
 /**
  * Put react scripts in dev mode when Caldera Forms is in dev mode
  */
-add_filter( 'reactwpscripts.is_development', function( ){
+add_filter('reactwpscripts.is_development', function () {
     return Caldera_Forms_Render_Assets::should_minify(true);
-} );
+});
 
 
 /**
  * Add entries count to form response
  */
-add_filter( 'caldera_forms_api_prepare_form', function ($form){
-   $form[ 'entries' ] = [
-       'count' => absint( Caldera_Forms_Entry_Bulk::count($form[ 'ID' ] ) )
-   ];
-   return $form;
+add_filter('caldera_forms_api_prepare_form', function ($form) {
+
+    $form['entries'] = [
+        'count' => absint(Caldera_Forms_Entry_Bulk::count($form['ID']))
+    ];
+    $form[ 'editLink' ] = esc_url_raw( Caldera_Forms_Admin::form_edit_link( $form['ID']));
+    return $form;
 });
 
 
 /**
  * Add random entries to all forms on activate
  */
-add_action( 'init', function(){
-   if( -1 !== get_option( 'CF_ADMIN_2_VER', -1 ) ){
-       caldera_admin_random_form_data();
-      update_option('CF_ADMIN_2_VER', 1 );
-   }
+add_action('init', function () {
+    if (-1 !== get_option('CF_ADMIN_2_VER', -1)) {
+        caldera_admin_random_form_data();
+        update_option('CF_ADMIN_2_VER', 1);
+    }
 });
 
 /**
  * Add random entries to all forms
  */
-function caldera_admin_random_form_data(){
+function caldera_admin_random_form_data()
+{
     $forms = Caldera_Forms_Forms::get_forms(false);
-    foreach ($forms as $form ){
+    foreach ($forms as $form) {
         $form = Caldera_Forms_Forms::get_form($form);
         $creator = new \calderawp\CalderaForms\Admin\Entries\Create($form);
         $creator->createEntry();

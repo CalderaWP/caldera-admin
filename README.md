@@ -65,6 +65,9 @@ You should now have WordPress at [http://localhost:8888/](http://localhost:8888/
 * (re)Activate Plugins
 - `composer cf:activate`
 
+* (re)Set WordPress permalinks
+- `composer wp:config`
+
 ### Testing
 
 #### Install Test Suites
@@ -88,3 +91,18 @@ Run these commands from the plugin's root directory.
 * Run JavaScript Unit Tests Once and Report Coverage
     - `yarn test:coverage`
 
+
+### Release To npm
+Must be [logged in as project maintainer via npm cli](https://docs.npmjs.com/cli/adduser)
+
+* `yarn release`
+    - Release a patch update
+    - Increments third position of a version. 1.0.1 -> 1.0.2
+* `yarn release:minor`
+    - Release a minor update
+    - Increments second position of a version. 1.0.1 -> 1.1.0 
+* `yarn release:major`
+    - Release a major update
+    - Increments second position of a version. 1.0.1 -> 2.0.0 
+    
+These commands run the tests and linter, and if they pass, re-compiles source, rebuilds docs, updates the version using [npm version](https://docs.npmjs.com/cli/version), adds a git tag, makes a git commit for the version change and updates the module on npm.

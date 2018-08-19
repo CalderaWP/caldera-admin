@@ -2,36 +2,79 @@ import React from 'react';
 import './css/legacy/admin.css';
 import './css/admin-two.css';
 import CalderaAdminScreen from '@caldera-labs/admin-client';
-import {Provider} from 'react-redux';
+import * as CalderaState from '@caldera-labs/state';
 
-const {CalderaAdminWithState,store} = CalderaAdminScreen;
+
+const {actions} = CalderaState.store;
+const {
+	AdminApp,
+	//dispatchers,
+	store,
+	//apiClients,
+	CalderaAdmin,
+} = CalderaAdminScreen;
+
 
 
 class App extends React.Component {
 
-	static loaded = false;
 
 
 	constructor(props){
 		super(props);
+		this.state = {
+			forms: {},
+			entryViewerForm: '',
+			entryPage: 1,
+			entries: {}
+		};
+		this.app = new AdminApp();
 		this.componentDidMount = this.componentDidMount.bind(this);
+		this.setFormsViaApi = this.setFormsViaApi.bind(this);
+		this.setForms = this.setForms.bind(this);
+		this.setEntryViewerForm = this.setEntryViewerForm.bind(this);
 	}
 
 	componentDidMount(){
-		App.loaded = true;
-		//this.props.setForms({});
+		this.setFormsViaApi();
+
+	}
+
+	setEntryViewerForm(entryViewerForm){
+		this.setState({entryViewerForm});
+		this.app.getApiClients().entriesClient.getEntries(entryViewerForm,this.state.entryPage).then( entries => {
+			this.setState({entries})
+		});
+
+	}
+
+
+	setFormsViaApi(){
+		this.app.getApiClients().formsAdminApiClient.getForms().then( r => {
+			this.app.getStore().dispatch(
+				actions.setForms(r)
+			);
+			this.setForms();
+		});
+	}
+
+	setForms(){
+		const _forms = this.app.getStore().getState()['CALDERA_FORMS/FORMS'].forms;
+		const forms = false === Array.isArray(_forms) ? _forms : {};
+		this.setState( {forms} );
 	}
 
 
 	render()
 	{
-		console.log(store.getState());
+
 		return (
 			<React.Fragment>
-				<p>Hi Mike</p>
-				<Provider store={store}>
-					<CalderaAdminWithState/>
-				</Provider>
+				<CalderaAdmin
+					forms={this.state.forms}
+					openEntryViewerForForm={this.setEntryViewerForm}
+					entries={this.state.entries}
+				/>
 			</React.Fragment>
 		);
 	}
