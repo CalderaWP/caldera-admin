@@ -1,6 +1,7 @@
 import React from "react";
 import entryType from './entryType'
 import classNames from 'classnames'
+import PropTypes from 'prop-types';
 
 export const Entry = (props) => {
 	return (
@@ -30,9 +31,9 @@ export const Entry = (props) => {
 					<div
 						className={classNames(
 							{
-								'user-avatar': props.user.ID && 0 < props.user.ID
+								'user-avatar': props.user.id && 0 < props.user.id
 							},
-							`user-avatar-${props.user.ID}`
+							`user-avatar-${props.user.id}`
 						)}
 						title={props.user.name}
 						style={{
@@ -49,17 +50,24 @@ export const Entry = (props) => {
 
 				<div
 					className={
-						classNames('caldera-forms-entry-right', 'tab-detail-panel hidden')
+						classNames('caldera-forms-entry-right', 'tab-detail-panel')
 					}
 				>
 					<ul>
-						{props.fields.map(field => {
+
+						{
+							props.fields.map(field => {
 							return (
-								<li className="entry-detail">
-									<span className="entry-label">{field.label}</span>
-									<div className="entry-content">
+								<li
+									className="entry-detail"
+									key={field.id}
+								>
+									<span className="entry-label">
+										{field.label ? field.label : field.slug}
+									</span>
+									<span className="entry-content">
 										{field.value}
-									</div>
+									</span>
 								</li>
 							)
 						})}
@@ -71,6 +79,23 @@ export const Entry = (props) => {
 	);
 };
 
-Entry.propTypes = entryType;
+/**
+ *
+ * @type {{fields, user, id, form: shim}}
+ */
+Entry.propTypes = {
+	...entryType,
+	form: PropTypes.object.isRequired
+};
 
-
+/**
+ *
+ * @type {{user: {id: string, avatar: string, name: string}}}
+ */
+Entry.defaultProps = {
+	user: {
+		id: '',
+		avatar: '',
+		name: ''
+	}
+};

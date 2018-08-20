@@ -11,7 +11,7 @@ export const EntryRowActions = (props) => {
 					isDefault
 					isLarge
 					onClick={() => {
-						props.onEntryAction('view');
+						props.onView()
 					}}
 				>
 					View

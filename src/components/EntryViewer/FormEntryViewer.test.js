@@ -23,6 +23,13 @@ describe( 'Prepare form columns', () => {
 		expect(getFormColumns(formwithIdCf1,false).length).toBe(6);
 	});
 
+	it( 'Sets name prop for each field', () => {
+		Object.values(getFormColumns(formwithIdCf1,false)).forEach( column => {
+			expect( column.hasOwnProperty('name')).toBe(true);
+		})
+	});
+
+
 	it( 'does not get entryActions when arg is false all fields', () => {
 		expect(getFormColumns(formwithIdCf1,true,false).length).toBe(2);
 	});

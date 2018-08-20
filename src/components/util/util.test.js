@@ -1,5 +1,6 @@
 import {optionFactory} from "./optionFactory";
 import {pickArray} from "./pickArray";
+import {findFieldById} from "./findFieldById";
 
 describe('optionFactory ', () => {
 	const value = 1;
@@ -63,4 +64,19 @@ describe('pickArray', () => {
 	});
 
 
-})
+});
+
+describe( 'findFieldById', () => {
+	const field = {
+		id: 'fld1',
+		slug: 'name'
+	};
+	const form = {
+		fields: {
+			fld1 : field
+		}
+	};
+
+	expect( findFieldById( 'fld1', form ) ).toEqual(field);
+	expect( findFieldById( 'fld2', form ) ).toEqual(null);
+});

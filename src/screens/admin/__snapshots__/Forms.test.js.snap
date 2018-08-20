@@ -86,22 +86,22 @@ exports[`FormsSlot component Renders when active and has forms 1`] = `
               "fields": Object {
                 "fld_6009157": Object {
                   "ID": "fld_6009157",
-                  "name": "Email Address",
+                  "label": "Email Address",
                   "type": "email",
                 },
                 "fld_7683514": Object {
                   "ID": "fld_7683514",
-                  "name": "Comments Questions",
+                  "label": "Comments Questions",
                   "type": "paragraph",
                 },
                 "fld_8768091": Object {
                   "ID": "fld_8768091",
-                  "name": "First Name",
+                  "label": "First Name",
                   "type": "text",
                 },
                 "fld_9970286": Object {
                   "ID": "fld_9970286",
-                  "name": "Last Name",
+                  "label": "Last Name",
                   "type": "text",
                 },
               },
@@ -119,9 +119,7 @@ exports[`FormsSlot component Renders when active and has forms 1`] = `
       />
     </div>
   </Component>
-  <Component>
-    Help Content From Forms component
-  </Component>
+  <Component />
 </div>
 `;
 
@@ -141,8 +139,6 @@ exports[`FormsSlot component Renders when active and has no forms 1`] = `
       No Forms Found
     </Notice>
   </Component>
-  <Component>
-    Help Content From Forms component
-  </Component>
+  <Component />
 </div>
 `;

@@ -144,16 +144,3 @@ describe('CalderaAdmin component', () => {
 
 });
 
-describe('CalderaAdmin with state', () => {
-	it('renders without crashing', () => {
-		ReactDOM.render(
-			<Provider store={store}>
-				<CalderaAdminWithState/>
-			</Provider>,
-			document.createElement('div2')
-		);
-
-	});
-
-});
-

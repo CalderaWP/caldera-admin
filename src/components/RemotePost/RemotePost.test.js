@@ -14,10 +14,11 @@ const post = {
 	},
 	excerpt: {
 		rendered: '<p>Hi R| Read more...</p>'
-	}
+	},
 	content: {
 		rendered: '<p>Hi Roy</p>'
-	}
+	},
+	href: 'https://calderaforms.com/hi-roy'
 };
 describe( 'Remote post  Component', () => {
 
@@ -41,4 +42,25 @@ describe( 'Remote post  Component', () => {
 		expect( component.toJSON() ).toMatchSnapshot();
 	});
 
+	it( 'Matches snapshot with read more text', () => {
+		const component = renderer.create(
+			<RemotePost
+				post={post}
+				className={'remote-post-for-help'}
+				readMore={'Hi Roy - Read More'}
+			/>
+		);
+		expect( component.toJSON() ).toMatchSnapshot();
+	});
+
+	it( 'Matches snapshot with button class name', () => {
+		const component = renderer.create(
+			<RemotePost
+				post={post}
+				className={'remote-post-for-help'}
+				buttonClassName={'roys'}
+			/>
+		);
+		expect( component.toJSON() ).toMatchSnapshot();
+	});
 });

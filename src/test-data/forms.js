@@ -1,5 +1,9 @@
+export const formIdCf1 =  'CF1';
+
+
+
 export  const formwithIdCf1 = {
-	ID: 'CF1',
+	ID: formIdCf1,
 	name: 'name One',
 	field_details: {
 		'order': {
@@ -35,22 +39,22 @@ export const formWithIdCf2 =  {
 	'fields': {
 		'fld_8768091': {
 			'ID': 'fld_8768091',
-			'name': 'First Name',
+			'label': 'First Name',
 			'type': 'text'
 		},
 		'fld_9970286': {
 			'ID': 'fld_9970286',
-			'name': 'Last Name',
+			'label': 'Last Name',
 			'type': 'text'
 		},
 		'fld_6009157': {
 			'ID': 'fld_6009157',
-			'name': 'Email Address',
+			'label': 'Email Address',
 			'type': 'email'
 		},
 		'fld_7683514': {
 			'ID': 'fld_7683514',
-			'name': 'Comments Questions',
+			'label': 'Comments Questions',
 			'type': 'paragraph'
 		}
 	},

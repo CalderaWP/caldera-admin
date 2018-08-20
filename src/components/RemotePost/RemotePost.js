@@ -36,7 +36,14 @@ export const RemotePost = (props) => {
 					{post.title.rendered}
 				</h2>
 				{Content()}
-				<a href={post.link}>Read More</a>
+				<a
+					href={props.post.href}
+					target="_blank"
+					className={props.buttonClassName}
+
+				>
+					{props.post.readMore}
+				</a>
 			</article>
 
 		</EmbedContainer>
@@ -46,10 +53,14 @@ export const RemotePost = (props) => {
 RemotePost.propTypes = {
 	...postPropTypes,
 	className: PropTypes.string,
-	showExcerpt: PropTypes.bool
+	showExcerpt: PropTypes.bool,
+	readMore: PropTypes.string
 
 };
 
 RemotePost.defaultProps = {
-	showExcerpt: true
+	showExcerpt: true,
+	readMore: 'Learn More',
+	buttonClassName: 'btn btn-green'
+
 }

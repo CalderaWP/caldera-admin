@@ -1,7 +1,8 @@
+import {formIdCf1} from './mockEntries';
 export const mockEntries =  {
 	'32': {
 		'id': '32',
-		'form_id': 'CF5b412c2eafc90',
+		'form_id': formIdCf1,
 		'datestamp': '2018-07-07 21:12:25',
 		'status': 'active',
 		'user': {
@@ -43,7 +44,7 @@ export const mockEntries =  {
 	},
 	'31': {
 		'id': '31',
-		'form_id': 'CF5b412c2eafc90',
+		'form_id': formIdCf1,
 		'datestamp': '2018-07-07 21:12:03',
 		'status': 'active',
 		'user': {

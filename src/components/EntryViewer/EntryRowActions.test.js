@@ -18,16 +18,16 @@ describe( 'Entry Row actions component', () => {
 	});
 
 	it( 'emits view event', () => {
-		let eventTypeReceived = '';
+		let eventReceived = false;
 		const component = shallow(
 			<EntryRowActions
-				onEntryAction={(eventType) => {
-					eventTypeReceived = eventType;
+				onView={(eventType) => {
+					eventReceived = true;
 				}}
 			/>
 		);
 		component.find( '.' + EntryRowActions.classNames.view).simulate('click');
-		expect(eventTypeReceived).toEqual('view');
+		expect(eventReceived).toEqual(true);
 	});
 
 	it( 'emits delete event', () => {

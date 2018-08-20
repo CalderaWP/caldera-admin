@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {RemotePost} from "../../components/RemotePost/RemotePost";
+import Grid from 'react-css-grid'
+
 export default class AdminSlot extends React.Component {
 	constructor(props) {
 		super(props);
@@ -38,18 +40,24 @@ export default class AdminSlot extends React.Component {
 			return <React.Fragment/>
 		}
 		return(
-			<React.Fragment>
+			<Grid
+				width={320}
+				gap={24}
+			>
 				{
 					Object.values( posts ).map( post => {
 						return(
 							<RemotePost
 								post={post}
 								key={post.id}
+								readMore={'Learn More'}
 							/>
 						)
 					})
 				}
-			</React.Fragment>
+
+			</Grid>
+
 		);
 
 	}

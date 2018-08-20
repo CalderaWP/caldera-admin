@@ -21,8 +21,6 @@ export default function getFormRows(
 			user: 'object' === typeof entry.user ? entry.user : {},
 		};
 
-
-
 		if (!entryListOnly) {
 			Object.values(entry.fields).forEach(entryField => {
 				thisRow[entryField.field_id] = entryField.value;
@@ -33,7 +31,7 @@ export default function getFormRows(
 			thisRow.entryActions = (
 				<EntryRowActions
 					onView={() => {
-						onEntryAction('viewForm', id);
+						onEntryAction('view', id);
 					}}
 				/>
 			);

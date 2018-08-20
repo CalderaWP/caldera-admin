@@ -2,7 +2,6 @@ import PropTypes from  'prop-types';
 
 export default {
 	fields: PropTypes.arrayOf(PropTypes.shape({
-		label: PropTypes.string.isRequired,
 		slug: PropTypes.string,
 		value: PropTypes.oneOfType([
 			PropTypes.string,

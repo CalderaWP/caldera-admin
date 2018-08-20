@@ -93,7 +93,7 @@ class CalderaAdmin extends Component {
 			)
 		}
 
-		if( 0 < Object.keys( this.props.forms ).length ){
+		if( 'object' !== typeof this.props.forms || 0 < Object.keys( this.props.forms ).length ){
 			return this.renderIfHasForms();
 
 		}

@@ -1,12 +1,13 @@
+
 /**
  * Get column headers for <EntryViewer>
  *
  * @return {({id: string, label: string}|{id: string, label: string})[]}
  */
-export function getFormColumns(form, entryListOnly = true, includeEntryActions = true ) {
-	const {entry_list,order} = form.field_details;
+export function getFormColumns(form, entryListOnly, includeEntryActions   = true )  {
+	const {entry_list, order} = form.field_details;
 	let columns = Object.values(entry_list);
-	if( ! entryListOnly ){
+	if (false === entryListOnly) {
 		Object.values(order).forEach(orderedField => {
 			columns.push(orderedField);
 		});
@@ -21,10 +22,11 @@ export function getFormColumns(form, entryListOnly = true, includeEntryActions =
 	}
 
 	columns.forEach(column => {
-		if( ! column.hasOwnProperty('key')){
-			column.key = column.hasOwnProperty('id')? column.id : JSON.stringify(Object.keys(column));
+		if (!column.hasOwnProperty('key')) {
+			column.key = column.id;
 		}
-		column.key = form.ID + column.key;
+		column.key = column.key;
+		column.name = column.hasOwnProperty('name') ? column.name : column.label;
 	});
 
 	return columns;

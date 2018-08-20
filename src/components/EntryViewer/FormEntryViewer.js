@@ -49,7 +49,7 @@ export class FormEntryViewer extends React.PureComponent {
 	 */
 	render() {
 		const {currentEntry} = this.state;
-		if (0 <= currentEntry) {
+		if (!currentEntry) {
 			return (
 				<div
 					className={FormEntryViewer.classNames.wrapper}
@@ -57,26 +57,46 @@ export class FormEntryViewer extends React.PureComponent {
 					<EntryViewer
 						columns={getFormColumns(
 							this.props.form,
-							0 > this.state.currentEntry,
+							true,
 							true
 						)}
 						rows={getFormRows(
 							this.props.entries,
+							this.onEntryAction
 						)}
 					/>
 				</div>
 
 			)
 		}
-		const entry = this.state.entries[currentEntry];
+		if (!this.props.entries.hasOwnProperty(currentEntry)) {
+			return <p>Entry {currentEntry} not found</p>
+		}
+		const entry = this.props.entries[currentEntry];
+		const formFields = this.props.form.fields;
+
+		let fields = [];
+		// eslint-disable-next-line
+		Object.keys(entry.fields).map(fieldId => {
+			let field = entry.fields[fieldId];
+			if (formFields.hasOwnProperty(fieldId)) {
+				console.log(formFields[fieldId]);
+				field.label = formFields[fieldId].name;
+			} else {
+				field.label = field.slug;
+
+			}
+			fields.push(field);
+		});
 		return (
 			<div
 				className={FormEntryViewer.classNames.wrapper}
 			>
 				<Entry
-					fields={entry.fields}
+					fields={fields}
 					user={entry.user}
 					id={entry.id}
+					form={this.props.form}
 				/>
 			</div>
 		)

@@ -5,9 +5,6 @@ import CalderaAdmin from './CalderaAdmin'
 import apiClients from './apiClients';
 
 
-
-
-
 class App extends React.Component {
 
 	constructor(props){
