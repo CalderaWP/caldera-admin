@@ -93,7 +93,19 @@ describe( 'Prepare form rows', () => {
 
 describe( 'Form entry viewer', () => {
 
+	it( 'has working methods', () => {
+		const component = shallow(
+			<FormEntryViewer
+				entries={entries}
+				form={formWithIdCf2}
+				getEntries={genericHandler}
+			/>
+		);
 
+		expect(
+			JSON.stringify(component.instance().getEntryFields(entries['32'] ) )
+		).toMatchSnapshot();
+	});
 	it.skip( 'Matches snapshot', () => {
 		expect(
 			renderer.create(

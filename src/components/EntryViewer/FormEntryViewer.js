@@ -21,6 +21,7 @@ export class FormEntryViewer extends React.PureComponent {
 		};
 		this.setCurrentEntry = this.setCurrentEntry.bind(this);
 		this.onEntryAction = this.onEntryAction.bind(this);
+		this.getEntryFields = this.getEntryFields.bind(this);
 	}
 
 	/**
@@ -32,6 +33,12 @@ export class FormEntryViewer extends React.PureComponent {
 		this.setState({currentEntry})
 	}
 
+	/**
+	 * Handle clicks on entry action buttons
+	 *
+	 * @param {String} eventType Type of event to dispatch
+	 * @param {String} id Entry ID
+	 */
 	onEntryAction(eventType, id) {
 		switch (eventType) {
 			case 'view':
@@ -40,6 +47,25 @@ export class FormEntryViewer extends React.PureComponent {
 			default:
 				return;
 		}
+	}
+
+	getEntryFields(entry) {
+		const formFields = this.props.form.fields;
+
+		let fields = [];
+		// eslint-disable-next-line
+		Object.keys(entry.fields).map(fieldId => {
+			let field = entry.fields[fieldId];
+			if (formFields.hasOwnProperty(fieldId)) {
+				console.log(formFields[fieldId]);
+				field.label = formFields[fieldId].name;
+			} else {
+				field.label = field.slug;
+
+			}
+			fields.push(field);
+		});
+		return fields;
 	}
 
 
@@ -73,21 +99,7 @@ export class FormEntryViewer extends React.PureComponent {
 			return <p>Entry {currentEntry} not found</p>
 		}
 		const entry = this.props.entries[currentEntry];
-		const formFields = this.props.form.fields;
-
-		let fields = [];
-		// eslint-disable-next-line
-		Object.keys(entry.fields).map(fieldId => {
-			let field = entry.fields[fieldId];
-			if (formFields.hasOwnProperty(fieldId)) {
-				console.log(formFields[fieldId]);
-				field.label = formFields[fieldId].name;
-			} else {
-				field.label = field.slug;
-
-			}
-			fields.push(field);
-		});
+		let fields = this.getEntryFields(entry);
 		return (
 			<div
 				className={FormEntryViewer.classNames.wrapper}
@@ -102,6 +114,7 @@ export class FormEntryViewer extends React.PureComponent {
 		)
 
 	}
+
 
 
 };
