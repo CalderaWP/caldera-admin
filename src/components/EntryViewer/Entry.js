@@ -2,31 +2,39 @@ import React from "react";
 import entryType from './entryType'
 import classNames from 'classnames'
 import PropTypes from 'prop-types';
+import {Button} from '@wordpress/components';
+import Grid from 'react-css-grid'
+
 
 export const Entry = (props) => {
+	const {gridCollapse,gridGap} = props;
+
+
 	return (
 		<div>
-			<div
-				className="baldrick-modal-title"
-				style={
-					{
-						display:'block'
-					}
-				}>
-				<a
-					//@todo make this an icon
-					className="baldrick-modal-closer"
-				>
-					×
-				</a>
+			<Grid
+				width={gridCollapse}
+				gap={gridGap}
+
+			>
 				<h3
-					className="modal-label"
+
 				>
 					Entry {props.id}
 				</h3>
-			</div>
+				<Button
+					icon={'no'}
+					tile={'Click To Close Entry'}
+					onClick={props.onClose}
+				>
+					Close
+				</Button>
+			</Grid>
 
-			<div>
+			<Grid
+				width={gridCollapse}
+				gap={gridGap}
+			>
 				<div className="caldera-forms-entry-left">
 					<div
 						className={classNames(
@@ -73,7 +81,7 @@ export const Entry = (props) => {
 						})}
 					</ul>
 				</div>
-			</div>
+			</Grid>
 		</div>
 
 	);
@@ -85,7 +93,10 @@ export const Entry = (props) => {
  */
 Entry.propTypes = {
 	...entryType,
-	form: PropTypes.object.isRequired
+	form: PropTypes.object.isRequired,
+	onClose: PropTypes.func.isRequired,
+	gridCollapse: PropTypes.number,
+	gridGap: PropTypes.number
 };
 
 /**
@@ -97,5 +108,7 @@ Entry.defaultProps = {
 		id: '',
 		avatar: '',
 		name: ''
-	}
+	},
+	gridCollapse: 320,
+	gridGap: 24
 };

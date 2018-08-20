@@ -60,7 +60,6 @@ export class FormEntryViewer extends React.PureComponent {
 		Object.keys(entry.fields).map(fieldId => {
 			let field = entry.fields[fieldId];
 			if (formFields.hasOwnProperty(fieldId)) {
-				console.log(formFields[fieldId]);
 				field.label = formFields[fieldId].name;
 			} else {
 				field.label = field.slug;
@@ -91,17 +90,16 @@ export class FormEntryViewer extends React.PureComponent {
 	 */
 	render() {
 		const {currentEntry} = this.state;
-		const gridCollpase=320;
+		const gridCollapse = 320;
 		const gridGap = 24;
 
 		if (!currentEntry) {
 			return (
 				<Grid
-					width={gridCollpase}
+					width={gridCollapse}
 					gap={gridGap}
 					className={FormEntryViewer.classNames.wrapper}
 				>
-
 					{this.entriesGrid()}
 				</Grid>
 
@@ -115,7 +113,7 @@ export class FormEntryViewer extends React.PureComponent {
 		let fields = this.getEntryFields(entry);
 		return (
 			<Grid
-				width={gridCollpase}
+				width={gridCollapse}
 				gap={gridGap}
 				className={FormEntryViewer.classNames.wrapper}
 			>
@@ -124,6 +122,9 @@ export class FormEntryViewer extends React.PureComponent {
 					user={entry.user}
 					id={entry.id}
 					form={this.props.form}
+					onClose={() => {
+						this.setCurrentEntry(0);
+					}}
 				/>
 				{this.entriesGrid()}
 			</Grid>
