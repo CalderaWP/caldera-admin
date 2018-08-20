@@ -68,7 +68,8 @@ You should now have WordPress at [http://localhost:8888/](http://localhost:8888/
 * (re)Set WordPress permalinks
 - `composer wp:config`
 
-### Testing
+### Testing With Local Environment
+Tests will also run in Travis on each push. You should also run tests locally as you develop.
 
 #### Install Test Suites
 Follow the steps above to create local development environment, then you can use the commands listed in the next section.
@@ -90,6 +91,10 @@ Run these commands from the plugin's root directory.
     - `yarn test:once`
 * Run JavaScript Unit Tests Once and Report Coverage
     - `yarn test:coverage`
+    
+    
+### Type-checking With Flow
+* `yarn flow`
 
 
 ### Release To npm

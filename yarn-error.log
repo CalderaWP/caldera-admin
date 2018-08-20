@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/josh/.nvm/versions/node/v8.11.3/bin/node /usr/local/bin/yarn
+  /Users/josh/.nvm/versions/node/v8.11.3/bin/node /usr/local/bin/yarn flow
 
 PATH: 
   /Users/josh/.nvm/versions/node/v8.11.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/josh/caldera-php/caldera-admin/package.json: Unexpected string in JSON at position 659
+  SyntaxError: /Users/josh/caldera-php/caldera-admin/package.json: Unexpected token } in JSON at position 1908
       at JSON.parse (<anonymous>)
       at /usr/local/lib/node_modules/yarn/lib/cli.js:1130:59
       at Generator.next (<anonymous>)
@@ -36,20 +36,21 @@ npm manifest:
       "@wordpress/components": "^1.0.1",
       "@wordpress/compose": "^1.0.2",
       "@wordpress/data": "^1.0.1",
+      "@wordpress/dom-ready": "^1.2.0",
       "@wordpress/element": "^1.0.2",
+      "classnames": "^2.2.6",
       "deepmerge": "^2.1.1",
       "dot-object": "^1.7.0",
       "enzyme-to-json": "^3.3.4",
       "locutus": "^2.0.9",
       "moment": "^2.22.2",
-      "react-data-grid": "^4.0.7",
-      "react-oembed-container": "^0.3.0",
-      "react-table": "^6.8.6"
-      "classnames": "^2.2.6",
       "prop-types": "^15.6.1",
       "react": "^16.4.1",
+      "react-data-grid": "^4.0.7",
       "react-dom": "^16.4.1",
+      "react-oembed-container": "^0.3.0",
       "react-router-dom": "^4.3.1",
+      "react-table": "^6.8.6",
       "react-wp-scripts": "0.2.0"
     },
     "scripts": {
@@ -60,10 +61,13 @@ npm manifest:
       "test:once": "CI=true react-scripts test --env=jsdom",
       "test:coverage": "npm test -- --coverage",
       "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
-      "lint": "eslint src/**/*.js"
+      "lint": "eslint src/**/*.js",
+      "flow:watch": "flow-watch",
+      "flow": "flow "
     },
     "devDependencies": {
       "babel-core": "^6.26.3",
+      "babel-preset-flow": "^6.23.0",
       "coveralls": "^3.0.2",
       "enzyme": "^3.3.0",
       "enzyme-adapter-react-16": "^1.1.1",
@@ -75,10 +79,15 @@ npm manifest:
       "eslint-plugin-flowtype": "^2.50.0",
       "eslint-plugin-jest": "^21.17.0",
       "eslint-plugin-react": "^7.9.1",
+      "flow-bin": "^0.79.1",
       "react-redux": "^5.0.7",
       "react-test-renderer": "^16.4.1",
-      "redux": "^4.0.0"
-    }
+      "redux": "^4.0.0",
+    },
+    "main": "src/index.js",
+    "repository": "git@github.com:CalderaWP/caldera-admin.git",
+    "author": "Josh Pollock <josh@calderawp.com>",
+    "private": false
   }
 
 yarn manifest: 
@@ -102,40 +111,11 @@ Lockfile:
     dependencies:
       regenerator-runtime "^0.12.0"
   
-  "@caldera-labs/admin-client@^0.4":
-    version "0.4.0"
-    resolved "https://registry.yarnpkg.com/@caldera-labs/admin-client/-/admin-client-0.4.0.tgz#e4a2a61041c41199acb870e3c820da9f0859f397"
-    dependencies:
-      "@caldera-labs/api-client" "0"
-      "@caldera-labs/components" "^1.6.0"
-      "@caldera-labs/processor-ui" "^0.5.0"
-      "@caldera-labs/state" "^0.9"
-      "@wordpress/components" "^1.0.1"
-      "@wordpress/compose" "^1.0.2"
-      "@wordpress/data" "^1.0.1"
-      "@wordpress/element" "^1.0.2"
-      classnames "^2.2.6"
-      deepmerge "^2.1.1"
-      dot-object "^1.7.0"
-      enzyme-to-json "^3.3.4"
-      locutus "^2.0.9"
-      moment "^2.22.2"
-      prop-types "^15.6.2"
-      react "^16.4.1"
-      react-data-grid "^4.0.7"
-      react-oembed-container "^0.3.0"
-      react-scripts "1.1.4"
-      react-table "^6.8.6"
-  
   "@caldera-labs/api-client@0":
     version "0.5.0"
     resolved "https://registry.yarnpkg.com/@caldera-labs/api-client/-/api-client-0.5.0.tgz#5e336b567b01557fe7a7b3531542df861092e262"
   
-  "@caldera-labs/api-client@^0.3":
-    version "0.3.0"
-    resolved "https://registry.yarnpkg.com/@caldera-labs/api-client/-/api-client-0.3.0.tgz#7f8b54ea09dc56a85ba11e57c06f7d252fb0bc6b"
-  
-  "@caldera-labs/components@^1.4", "@caldera-labs/components@^1.6", "@caldera-labs/components@^1.6.0":
+  "@caldera-labs/components@^1.4", "@caldera-labs/components@^1.6.0":
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/@caldera-labs/components/-/components-1.6.0.tgz#8f50b84d2dbf4e533c21fbbf0fa2ace229541ad0"
     dependencies:
@@ -144,7 +124,7 @@ Lockfile:
       downshift "^1.31.16"
       react-autocomplete "^1.8.1"
   
-  "@caldera-labs/processor-ui@^0.5", "@caldera-labs/processor-ui@^0.5.0":
+  "@caldera-labs/processor-ui@^0.5.0":
     version "0.5.0"
     resolved "https://registry.yarnpkg.com/@caldera-labs/processor-ui/-/processor-ui-0.5.0.tgz#5b358a0b0031080023ccad7fab563ffcc5731edc"
     dependencies:
@@ -159,7 +139,7 @@ Lockfile:
       react-compose "^2.0.0"
       react-redux "^5.0.7"
   
-  "@caldera-labs/state@^0.7", "@caldera-labs/state@^0.7.0":
+  "@caldera-labs/state@^0.7.0":
     version "0.7.1"
     resolved "https://registry.yarnpkg.com/@caldera-labs/state/-/state-0.7.1.tgz#194befdcac8a2c4ef2ff8f3c1683ab6a67749087"
   
@@ -1282,7 +1262,7 @@ Lockfile:
     dependencies:
       babel-plugin-jest-hoist "^20.0.3"
   
-  babel-preset-react-app@^3.1.0, babel-preset-react-app@^3.1.1:
+  babel-preset-react-app@^3.1.0:
     version "3.1.2"
     resolved "https://registry.yarnpkg.com/babel-preset-react-app/-/babel-preset-react-app-3.1.2.tgz#49ba3681b917c4e5c73a5249d3ef4c48fae064e2"
     dependencies:
@@ -2488,13 +2468,6 @@ Lockfile:
       address "^1.0.1"
       debug "^2.6.0"
   
-  detect-port-alt@1.1.6:
-    version "1.1.6"
-    resolved "https://registry.yarnpkg.com/detect-port-alt/-/detect-port-alt-1.1.6.tgz#24707deabe932d4a3cf621302027c2b266568275"
-    dependencies:
-      address "^1.0.1"
-      debug "^2.6.0"
-  
   diff@^3.2.0:
     version "3.5.0"
     resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
@@ -2630,10 +2603,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
     dependencies:
       is-obj "^1.0.0"
-  
-  dotenv-expand@4.2.0:
-    version "4.2.0"
-    resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-4.2.0.tgz#def1f1ca5d6059d24a766e587942c21106ce1275"
   
   dotenv@4.0.0:
     version "4.0.0"
@@ -2981,7 +2950,7 @@ Lockfile:
       minimist "1.2.0"
       taffydb "2.7.3"
   
-  eslint-config-react-app@^2.0.1, eslint-config-react-app@^2.1.0:
+  eslint-config-react-app@^2.0.1:
     version "2.1.0"
     resolved "https://registry.yarnpkg.com/eslint-config-react-app/-/eslint-config-react-app-2.1.0.tgz#23c909f71cbaff76b945b831d2d814b8bde169eb"
   
@@ -3564,6 +3533,10 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
   
+  flow-bin@^0.79.1:
+    version "0.79.1"
+    resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.79.1.tgz#01c9f427baa6556753fa878c192d42e1ecb764b6"
+  
   follow-redirects@^1.0.0:
     version "1.5.5"
     resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.5.tgz#3c143ca599a2e22e62876687d68b23d55bad788b"
@@ -3665,7 +3638,7 @@ Lockfile:
       nan "^2.3.0"
       node-pre-gyp "^0.6.36"
   
-  fsevents@^1.0.0, fsevents@^1.1.3, fsevents@^1.2.2:
+  fsevents@^1.0.0, fsevents@^1.2.2:
     version "1.2.4"
     resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.4.tgz#f41dcb1af2582af3692da36fc55cbd8e1041c426"
     dependencies:
@@ -5987,12 +5960,6 @@ Lockfile:
     dependencies:
       is-wsl "^1.1.0"
   
-  opn@5.2.0:
-    version "5.2.0"
-    resolved "https://registry.yarnpkg.com/opn/-/opn-5.2.0.tgz#71fdf934d6827d676cecbea1531f95d354641225"
-    dependencies:
-      is-wsl "^1.1.0"
-  
   opn@^5.1.0:
     version "5.3.0"
     resolved "https://registry.yarnpkg.com/opn/-/opn-5.3.0.tgz#64871565c863875f052cfdf53d3e3cb5adb53b1c"
@@ -6823,29 +6790,6 @@ Lockfile:
       strip-ansi "3.0.1"
       text-table "0.2.0"
   
-  react-dev-utils@^5.0.1:
-    version "5.0.1"
-    resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-5.0.1.tgz#1f396e161fe44b595db1b186a40067289bf06613"
-    dependencies:
-      address "1.0.3"
-      babel-code-frame "6.26.0"
-      chalk "1.1.3"
-      cross-spawn "5.1.0"
-      detect-port-alt "1.1.6"
-      escape-string-regexp "1.0.5"
-      filesize "3.5.11"
-      global-modules "1.0.0"
-      gzip-size "3.0.0"
-      inquirer "3.3.0"
-      is-root "1.0.0"
-      opn "5.2.0"
-      react-error-overlay "^4.0.0"
-      recursive-readdir "2.2.1"
-      shell-quote "1.6.1"
-      sockjs-client "1.1.4"
-      strip-ansi "3.0.1"
-      text-table "0.2.0"
-  
   react-dom@^16.4.1:
     version "16.4.2"
     resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.2.tgz#4afed569689f2c561d2b8da0b819669c38a0bda4"
@@ -6858,10 +6802,6 @@ Lockfile:
   react-error-overlay@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
-  
-  react-error-overlay@^4.0.0:
-    version "4.0.0"
-    resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
   
   react-is@^16.4.2:
     version "16.4.2"
@@ -6969,51 +6909,6 @@ Lockfile:
       whatwg-fetch "2.0.3"
     optionalDependencies:
       fsevents "1.1.2"
-  
-  react-scripts@1.1.4:
-    version "1.1.4"
-    resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-1.1.4.tgz#d5c230e707918d6dd2d06f303b10f5222d017c88"
-    dependencies:
-      autoprefixer "7.1.6"
-      babel-core "6.26.0"
-      babel-eslint "7.2.3"
-      babel-jest "20.0.3"
-      babel-loader "7.1.2"
-      babel-preset-react-app "^3.1.1"
-      babel-runtime "6.26.0"
-      case-sensitive-paths-webpack-plugin "2.1.1"
-      chalk "1.1.3"
-      css-loader "0.28.7"
-      dotenv "4.0.0"
-      dotenv-expand "4.2.0"
-      eslint "4.10.0"
-      eslint-config-react-app "^2.1.0"
-      eslint-loader "1.9.0"
-      eslint-plugin-flowtype "2.39.1"
-      eslint-plugin-import "2.8.0"
-      eslint-plugin-jsx-a11y "5.1.1"
-      eslint-plugin-react "7.4.0"
-      extract-text-webpack-plugin "3.0.2"
-      file-loader "1.1.5"
-      fs-extra "3.0.1"
-      html-webpack-plugin "2.29.0"
-      jest "20.0.4"
-      object-assign "4.1.1"
-      postcss-flexbugs-fixes "3.2.0"
-      postcss-loader "2.0.8"
-      promise "8.0.1"
-      raf "3.4.0"
-      react-dev-utils "^5.0.1"
-      resolve "1.6.0"
-      style-loader "0.19.0"
-      sw-precache-webpack-plugin "0.11.4"
-      url-loader "0.6.2"
-      webpack "3.8.1"
-      webpack-dev-server "2.9.4"
-      webpack-manifest-plugin "1.3.2"
-      whatwg-fetch "2.0.3"
-    optionalDependencies:
-      fsevents "^1.1.3"
   
   react-table@^6.8.6:
     version "6.8.6"
@@ -7391,12 +7286,6 @@ Lockfile:
   resolve@1.1.7:
     version "1.1.7"
     resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
-  
-  resolve@1.6.0:
-    version "1.6.0"
-    resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.6.0.tgz#0fbd21278b27b4004481c395349e7aba60a9ff5c"
-    dependencies:
-      path-parse "^1.0.5"
   
   resolve@^1.3.2, resolve@^1.5.0:
     version "1.8.1"
