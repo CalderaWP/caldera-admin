@@ -37,7 +37,7 @@ class App extends React.Component {
 		return apiClients;
 	}
 
-	setEntryViewerForm(entryViewerForm){
+	setEntryViewerForm(entryViewerForm : Object ){
 		this.setState({entryViewerForm});
 		this.getApiClients().entriesClient.getEntries(entryViewerForm,this.state.entryPage).then( entries => {
 			this.setState({entries})

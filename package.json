@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-preset-flow": "^6.23.0",
     "coveralls": "^3.0.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -51,8 +52,13 @@
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-react": "^7.9.1",
+    "flow-bin": "^0.79.1",
     "react-redux": "^5.0.7",
     "react-test-renderer": "^16.4.1",
     "redux": "^4.0.0"
-  }
+  },
+  "main": "src/index.js",
+  "repository": "git@github.com:CalderaWP/caldera-admin.git",
+  "author": "Josh Pollock <josh@calderawp.com>",
+  "private": false
 }

@@ -12,6 +12,9 @@ const post = {
 	title : {
 		rendered: 'Hello To Roy'
 	},
+	excerpt: {
+		rendered: '<p>Hi R| Read more...</p>'
+	}
 	content: {
 		rendered: '<p>Hi Roy</p>'
 	}
