@@ -175,6 +175,7 @@ class CalderaAdmin extends Component {
 						form={this.state.entryViewerForm}
 						entries={entries}
 						helpContentCategory={551}
+						onEntryPageNav={this.props.onEntryPageNav}
 					/>
 					}
 					<FormAdminMainView/>
@@ -202,6 +203,7 @@ CalderaAdmin.propTypes = {
 	},
 	loading: PropTypes.bool,
 	openEntryViewerForForm: PropTypes.func,
+	onEntryPageNav: PropTypes.func,
 	onCreateForm: PropTypes.PropTypes.func,
 	templates: PropTypes.oneOfType([
 		PropTypes.array,

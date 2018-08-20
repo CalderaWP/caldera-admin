@@ -22,6 +22,8 @@ class App extends React.Component {
 		this.setEntryViewerForm = this.setEntryViewerForm.bind(this);
 		this.createForm = this.createForm.bind(this);
 		this.getTemplates = this.getTemplates.bind(this);
+		this.onEntryPageNav = this.onEntryPageNav.bind(this);
+		this.getEntriesViaApi = this.getEntriesViaApi.bind(this);
 	}
 
 	componentDidMount(){
@@ -34,12 +36,22 @@ class App extends React.Component {
 		return apiClients;
 	}
 
+	onEntryPageNav(entryPage){
+		this.setState({entryPage});
+		this.getEntriesViaApi();
+
+
+	}
 	setEntryViewerForm(entryViewerForm : Object ){
 		this.setState({entryViewerForm});
-		this.getApiClients().entriesClient.getEntries(entryViewerForm,this.state.entryPage).then( entries => {
+		this.getEntriesViaApi(entryViewerForm);
+
+	}
+
+	getEntriesViaApi() {
+		this.getApiClients().entriesClient.getEntries(this.state.entryViewerForm, this.state.entryPage).then(entries => {
 			this.setState({entries})
 		});
-
 	}
 
 	setFormsViaApi(){
@@ -78,6 +90,8 @@ class App extends React.Component {
 					entries={this.state.entries}
 					onCreateForm={this.createForm}
 					templates={this.getTemplates()}
+					onEntryPageNav={this.onEntryPageNav}
+					entryPage={this.props.entryPage}
 				/>
 			</React.Fragment>
 		);

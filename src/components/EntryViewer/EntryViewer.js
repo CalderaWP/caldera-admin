@@ -79,7 +79,7 @@ export class EntryViewer extends React.PureComponent {
 	 * Check if we have a page before this page
 	 */
 	isPreviousDisabled() {
-		return 1 >= this.state.page;
+		return 1 <= this.state.page;
 	}
 
 	/**
@@ -116,19 +116,19 @@ export class EntryViewer extends React.PureComponent {
 						className={EntryViewer.classNames.nextNav}
 						isLarge
 						isDefault
-						isdisabled={this.isPreviousDisabled().toString()}
+						disabled={this.isPreviousDisabled().toString()}
 						onClick={this.onPrevious}
 					>
 						Previous Page
 					</Button>
 					<span>
-						Page {this.state.page} of {this.state.totalPages}
+						Page {this.state.page} of {this.props.totalPages}
 					</span>
 					<Button
 						className={EntryViewer.classNames.nextNav}
 						isLarge
 						isDefault
-						isdisabled={this.isNextDisabled().toString()}
+						disabled={this.isNextDisabled().toString()}
 						onClick={this.onNext}
 					>
 						Next Page
@@ -151,7 +151,7 @@ EntryViewer.propTypes = {
 	className: PropTypes.string,
 	page: PropTypes.number,
 	totalPages: PropTypes.number,
-	onPageNav: PropTypes.func,
+	onPageNav: PropTypes.func.isRequired,
 	onDelete: PropTypes.func,
 	onExport: PropTypes.func,
 	onChangeEntryStatus: PropTypes.func,
@@ -162,7 +162,8 @@ EntryViewer.propTypes = {
  * @type {{dateFormat: string, defaultPageSize: number, prePrepareData: EntryViewer.defaultProps.prePrepareData}}
  */
 EntryViewer.defaultProps = {
-	page: 1
+	page: 1,
+	totalPages: 1
 };
 
 EntryViewer.classNames = {

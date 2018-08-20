@@ -99,6 +99,8 @@ describe( 'Form entry viewer', () => {
 				entries={entries}
 				form={formWithIdCf2}
 				getEntries={genericHandler}
+				onPageNav={genericHandler}
+
 			/>
 		);
 
@@ -113,6 +115,7 @@ describe( 'Form entry viewer', () => {
 					entries={entries}
 					form={formWithIdCf2}
 					getEntries={genericHandler}
+					onPageNav={genericHandler}
 				/>
 			).toJSON()
 		).toMatchSnapshot();

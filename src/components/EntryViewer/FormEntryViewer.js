@@ -20,11 +20,22 @@ export class FormEntryViewer extends React.PureComponent {
 		super(props);
 		this.state = {
 			currentEntry: 0,
+			perPage: 20
 		};
 		this.setCurrentEntry = this.setCurrentEntry.bind(this);
 		this.onEntryAction = this.onEntryAction.bind(this);
 		this.getEntryFields = this.getEntryFields.bind(this);
 		this.entriesGrid = this.entriesGrid.bind(this);
+		this.getTotalPages = this.getTotalPages.bind(this);
+	}
+
+
+	/**
+	 * Get the total number of pages
+	 * @return {number}
+	 */
+	getTotalPages(){
+		return Math.ceil(this.props.form.entries.count/ this.state.perPage);
 	}
 
 	/**
@@ -52,6 +63,12 @@ export class FormEntryViewer extends React.PureComponent {
 		}
 	}
 
+	/**
+	 * Create fields for single entry viewer
+	 *
+	 * @param entry
+	 * @return {Array}
+	 */
 	getEntryFields(entry) {
 		const formFields = this.props.form.fields;
 
@@ -70,6 +87,10 @@ export class FormEntryViewer extends React.PureComponent {
 		return fields;
 	}
 
+	/**
+	 * Create entry viewer grid view
+	 * @return {*}
+	 */
 	entriesGrid() {
 		return <EntryViewer
 			columns={getFormColumns(
@@ -81,6 +102,8 @@ export class FormEntryViewer extends React.PureComponent {
 				this.props.entries,
 				this.onEntryAction
 			)}
+			totalPages={this.getTotalPages()}
+			onPageNav={this.props.onPageNav}
 		/>;
 	}
 
@@ -147,7 +170,8 @@ FormEntryViewer.propTypes = {
 			PropTypes.object,
 			PropTypes.array,
 		]
-	)
+	),
+	onPageNav: PropTypes.func.isRequired
 };
 
 FormEntryViewer.classNames = {

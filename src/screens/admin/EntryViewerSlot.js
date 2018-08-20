@@ -10,7 +10,7 @@ import FormAdminHelpView from './FormAdminHelpView';
 export default class EntryViewerSlot extends AdminSlot {
 
 	render() {
-		const {form,entries} = this.props;
+		const {form,entries,onEntryPageNav} = this.props;
 
 		return (
 			<div>
@@ -27,6 +27,7 @@ export default class EntryViewerSlot extends AdminSlot {
 						<FormEntryViewer
 							form={form}
 							entries={entries}
+							onPageNav={onEntryPageNav}
 						/>
 					</FormAdminMainView.Content>
 					<FormAdminHelpView.Content>
@@ -49,6 +50,7 @@ export default class EntryViewerSlot extends AdminSlot {
 EntryViewerSlot.propTypes = {
 	form: PropTypes.shape(types.formType),
 	entries: PropTypes.shape(types.entriesType),
+	onEntryPageNav: PropTypes.func.isRequired
 };
 
 EntryViewerSlot.props = {
