@@ -4,6 +4,8 @@ import {EntryViewer} from "./EntryViewer";
 import {Entry} from "./Entry";
 import {getFormColumns} from "./getFormColumns";
 import getFormRows from "./getFormRows";
+import Grid from 'react-css-grid'
+
 
 /**
  * Encapsulates the UI for viewing the saved entries of a form.
@@ -22,6 +24,7 @@ export class FormEntryViewer extends React.PureComponent {
 		this.setCurrentEntry = this.setCurrentEntry.bind(this);
 		this.onEntryAction = this.onEntryAction.bind(this);
 		this.getEntryFields = this.getEntryFields.bind(this);
+		this.entriesGrid = this.entriesGrid.bind(this);
 	}
 
 	/**
@@ -68,6 +71,19 @@ export class FormEntryViewer extends React.PureComponent {
 		return fields;
 	}
 
+	entriesGrid() {
+		return <EntryViewer
+			columns={getFormColumns(
+				this.props.form,
+				true,
+				true
+			)}
+			rows={getFormRows(
+				this.props.entries,
+				this.onEntryAction
+			)}
+		/>;
+	}
 
 	/**
 	 * Render the FormEntryViewer
@@ -75,33 +91,32 @@ export class FormEntryViewer extends React.PureComponent {
 	 */
 	render() {
 		const {currentEntry} = this.state;
+		const gridCollpase=320;
+		const gridGap = 24;
+
 		if (!currentEntry) {
 			return (
-				<div
+				<Grid
+					width={gridCollpase}
+					gap={gridGap}
 					className={FormEntryViewer.classNames.wrapper}
 				>
-					<EntryViewer
-						columns={getFormColumns(
-							this.props.form,
-							true,
-							true
-						)}
-						rows={getFormRows(
-							this.props.entries,
-							this.onEntryAction
-						)}
-					/>
-				</div>
+
+					{this.entriesGrid()}
+				</Grid>
 
 			)
 		}
 		if (!this.props.entries.hasOwnProperty(currentEntry)) {
 			return <p>Entry {currentEntry} not found</p>
 		}
+
 		const entry = this.props.entries[currentEntry];
 		let fields = this.getEntryFields(entry);
 		return (
-			<div
+			<Grid
+				width={gridCollpase}
+				gap={gridGap}
 				className={FormEntryViewer.classNames.wrapper}
 			>
 				<Entry
@@ -110,7 +125,8 @@ export class FormEntryViewer extends React.PureComponent {
 					id={entry.id}
 					form={this.props.form}
 				/>
-			</div>
+				{this.entriesGrid()}
+			</Grid>
 		)
 
 	}
