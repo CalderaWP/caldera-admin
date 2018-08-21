@@ -34,7 +34,7 @@ describe( 'Entry Row actions component', () => {
 		let eventTypeReceived = '';
 		const component = shallow(
 			<EntryRowActions
-				onEntryAction={(eventType) => {
+				onDelete={(eventType) => {
 					eventTypeReceived = eventType;
 				}}
 			/>
@@ -47,7 +47,7 @@ describe( 'Entry Row actions component', () => {
 		let eventTypeReceived = '';
 		const component = shallow(
 			<EntryRowActions
-				onEntryAction={(eventType) => {
+				onResend={(eventType) => {
 					eventTypeReceived = eventType;
 				}}
 			/>

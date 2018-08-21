@@ -33,6 +33,13 @@ export default function getFormRows(
 					onView={() => {
 						onEntryAction('view', id);
 					}}
+					onDelete={() => {
+						onEntryAction('view', id);
+					}}
+					onResend={() => {
+						onEntryAction('resend', id )
+					}}
+
 				/>
 			);
 		}

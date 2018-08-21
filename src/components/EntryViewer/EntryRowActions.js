@@ -21,7 +21,7 @@ export const EntryRowActions = (props) => {
 					isDefault
 					isLarge
 					onClick={() => {
-						props.onEntryAction('delete');
+						props.onDelete()
 					}}
 
 				>
@@ -32,7 +32,7 @@ export const EntryRowActions = (props) => {
 					isDefault
 					isLarge
 					onClick={() => {
-						props.onEntryAction('resend');
+						props.onResend()
 					}}
 
 				>
@@ -48,8 +48,9 @@ export const EntryRowActions = (props) => {
 };
 
 EntryRowActions.propTypes = {
-	onEntryAction: PropTypes.func,
-
+	onView: PropTypes.func,
+	onDelete: PropTypes.func,
+	onResend: PropTypes.func,
 };
 
 EntryRowActions.classNames = {

@@ -50,7 +50,7 @@ export default class EntryViewerSlot extends AdminSlot {
 EntryViewerSlot.propTypes = {
 	form: PropTypes.shape(types.formType),
 	entries: PropTypes.shape(types.entriesType),
-	onEntryPageNav: PropTypes.func.isRequired
+	onEntryPageNav: PropTypes.func
 };
 
 EntryViewerSlot.props = {
