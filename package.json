@@ -23,6 +23,7 @@
     "enzyme-to-json": "^3.3.4",
     "hoist-non-react-statics": "^3.0.1",
     "locutus": "^2.0.9",
+    "lodash.debounce": "^4.0.8",
     "lodash.filter": "^4.6.0",
     "lodash.sortby": "^4.7.0",
     "moment": "^2.22.2",

@@ -51,6 +51,7 @@ export default class FormsSlot extends AdminSlot {
 		const orderedForms = filter( this.state.orderedForms, (form) => {
 			return form.name.includes(formSearchTerm);
 		} );
+		
 		this.setState({
 			formSearchTerm,
 			orderedForms

@@ -4,7 +4,16 @@ import {RenderGroup} from '@caldera-labs/components';
 
 export const SORT_FORMS_BY_NAME = 'name';
 export const SORT_FORMS_BY_UPDATE = '_last_updated';
+
+/**
+ * Form list sort and search controls.
+ *
+ * @param props
+ * @return {*}
+ * @constructor
+ */
 export const FormListSort = (props) => {
+
 	const sortOptions = {
 		id: 'cf-form-sort-options',
 		label: 'Sort Forms By',
@@ -37,7 +46,6 @@ export const FormListSort = (props) => {
 		value: props.formSearchTerm,
 		onValueChange: (newValue) => {
 			props.onFormSearch(newValue);
-
 		}
 	};
 	return (
