@@ -1,5 +1,5 @@
 import renderer from "react-test-renderer";
-import {FormListSort,SORT_FORMS_BY_NAME, SORT_FORMS_BY_CREATED} from "./FormListSort";
+import {FormListSort,SORT_FORMS_BY_NAME, SORT_FORMS_BY_UPDATE} from "./FormListSort";
 import React from 'react';
 import {mount} from 'enzyme';
 import Enzyme from 'enzyme';
@@ -32,9 +32,9 @@ describe('FormListSort component', () => {
 		);
 
 		component.find( '.' + FormListSort.classNames.order ).simulate('change',
-			{target: { value: SORT_FORMS_BY_CREATED}}
+			{target: { value: SORT_FORMS_BY_UPDATE}}
 		);
-		expect(recived).toEqual(SORT_FORMS_BY_CREATED);
+		expect(recived).toEqual(SORT_FORMS_BY_UPDATE);
 	});
 
 
