@@ -127,7 +127,7 @@ export class FormEntryViewer extends React.PureComponent {
 						this.onEntryAction
 					)}
 					totalPages={this.getTotalPages()}
-					onPageNav={this.props.onPageNav}
+					onPageNav={this.props.onEntryPageNav}
 				/>
 			</div>
 		);
@@ -173,7 +173,7 @@ export class FormEntryViewer extends React.PureComponent {
 			>
 				<Button
 					onClick={() => {
-						this.closeSingleEntry()
+						this.closeSingleEntry();
 						this.props.onEntryListViewClose();
 					}}
 				>
@@ -251,10 +251,10 @@ FormEntryViewer.propTypes = {
 			PropTypes.array,
 		]
 	),
-	onPageNav: PropTypes.func.isRequired,
 	onSingleEntryViewerOpen: PropTypes.func,
 	onSingleEntryViewerClose: PropTypes.func,
-	onEntryListViewClose: PropTypes.func
+	onEntryListViewClose: PropTypes.func,
+	onEntryPageNav: PropTypes.func
 };
 
 FormEntryViewer.classNames = {

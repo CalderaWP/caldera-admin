@@ -21,7 +21,6 @@ export class EntryViewer extends React.PureComponent {
 		this.state = {
 			loading: true,
 			columnIds: [],
-			page: ! isNaN(props.page) ? props.page : 1,
 		};
 
 		this.onNext = this.onNext.bind(this);
@@ -60,33 +59,35 @@ export class EntryViewer extends React.PureComponent {
 	 * Navigate to previous page
 	 */
 	onPrevious() {
-		let {page} = this.state;
-		this.setState({page:page -1});
-		this.props.onPageNav(page,this.state.page);
+		let {page} = this.props;
+		page--;
+		this.props.onPageNav(page - 1 );
 	}
 
 	/**
 	 * Navigate to next page
 	 */
 	onNext() {
-		let {page} = this.state;
-		this.setState({page:page + 1});
-		this.props.onPageNav(page,this.state.page);
+		let {page,totalPages} = this.props;
+		page++;
+		if( page < this.totalPages){
+			this.props.onPageNav(page);
+		}
 	}
 
 
 	/**
 	 * Check if we have a page before this page
 	 */
-	isPreviousDisabled() {
-		return 1 <= this.state.page;
+	showPreviousNav() {
+		return 1 !== this.props.page;
 	}
 
 	/**
 	 * Check if we have a page after this page
 	 */
-	isNextDisabled(){
-		return this.props.totalPages >= this.state.page;
+	showNextNav(){
+		return this.props.totalPages >= this.props.page;
 	}
 
 	/**
@@ -112,27 +113,44 @@ export class EntryViewer extends React.PureComponent {
 					minHeight={500}
 				/>
 				<div>
-					<Button
-						className={EntryViewer.classNames.nextNav}
-						isLarge
-						isDefault
-						disabled={this.isPreviousDisabled().toString()}
-						onClick={this.onPrevious}
-					>
-						Previous Page
-					</Button>
+					{true === this.showPreviousNav() &&
+						<Button
+							className={EntryViewer.classNames.nextNav}
+							isLarge
+							isDefault
+							onClick={this.onPrevious}
+						>
+							Previous Page
+						</Button>
+					}
+
+					{false === this.showPreviousNav() &&
+						<Button
+							className={EntryViewer.classNames.nextNav}
+							isLarge
+							isDefault
+							disabled
+							onClick={this.onPrevious}
+						>
+							Previous Page
+						</Button>
+					}
+
 					<span>
-						Page {this.state.page} of {this.props.totalPages}
+						Page {this.props.page} of {this.props.totalPages}
 					</span>
-					<Button
-						className={EntryViewer.classNames.nextNav}
-						isLarge
-						isDefault
-						disabled={this.isNextDisabled().toString()}
-						onClick={this.onNext}
-					>
-						Next Page
-					</Button>
+					{true === this.showNextNav() &&
+						<Button
+							className={EntryViewer.classNames.nextNav}
+							isLarge
+							isDefault
+							onClick={this.onNext}
+						>
+							Next Page
+						</Button>
+					}
+
+
 				</div>
 			</div>
 		);

@@ -51,7 +51,7 @@ export default class FormsSlot extends AdminSlot {
 		const orderedForms = filter( this.state.orderedForms, (form) => {
 			return form.name.includes(formSearchTerm);
 		} );
-		
+
 		this.setState({
 			formSearchTerm,
 			orderedForms
@@ -87,7 +87,7 @@ export default class FormsSlot extends AdminSlot {
 						<FormEntryViewer
 							form={entryViewerForm}
 							entries={entries}
-							onPageNav={onEntryPageNav}
+							onEntryPageNav={onEntryPageNav}
 							// eslint-disable-next-line
 							onSingleEntryViewerOpen={() => {
 								this.setState({

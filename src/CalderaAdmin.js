@@ -154,7 +154,8 @@ class CalderaAdmin extends Component {
 			settings,
 			updateSettings,
 			entries,
-			templates
+			templates,
+			onEntryPageNav
 		} = this.props;
 		return (
 			<React.Fragment>
@@ -170,6 +171,7 @@ class CalderaAdmin extends Component {
 						openEntryViewerForForm={this.onOpenEntryViewerForForm}
 						helpContentCategory={549}
 						entryViewerForm={this.state.entryViewerForm}
+						onEntryPageNav={onEntryPageNav}
 					/>
 					<CreateFormSlot
 						forms={forms}

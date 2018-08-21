@@ -59,6 +59,7 @@ class App extends React.Component {
 			this.state.entryViewerForm,
 			this.state.entryPage
 		).then(entries => {
+			console.log(entries);
 			this.setState({entries})
 		});
 	}

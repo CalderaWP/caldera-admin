@@ -258,7 +258,7 @@ describe('Entry FormAdminMainView component', () => {
 					/>
 				);
 				expect(
-					component.instance().isPreviousDisabled()
+					component.instance().showPreviousNav()
 				).toEqual(true);
 			});
 			it('Does not disable previous on page 2', () => {
@@ -270,7 +270,7 @@ describe('Entry FormAdminMainView component', () => {
 					/>
 				);
 				expect(
-					component.instance().isPreviousDisabled()
+					component.instance().showPreviousNav()
 				).toEqual(false);
 			});
 			it('Disables next on last page', () => {
@@ -284,7 +284,7 @@ describe('Entry FormAdminMainView component', () => {
 					/>
 				);
 				expect(
-					component.instance().isNextDisabled()
+					component.instance().showNextNav()
 				).toEqual(true);
 			});
 			it('Does not disable next on page 2nd of 3 pages', () => {
@@ -298,7 +298,7 @@ describe('Entry FormAdminMainView component', () => {
 					/>
 				);
 				expect(
-					component.instance().isPreviousDisabled()
+					component.instance().showPreviousNav()
 				).toEqual(false);
 			});
 
