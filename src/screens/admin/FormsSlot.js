@@ -26,9 +26,7 @@ export default class FormsSlot extends AdminSlot {
 			const {entryViewerForm, entries, onEntryPageNav} = this.props;
 
 			return (
-
-				<Grid
-				>
+				<Grid>
 					{true === this.state.showFormList &&
 					<FormList
 						forms={forms}
@@ -39,26 +37,33 @@ export default class FormsSlot extends AdminSlot {
 					}
 
 					{'object' === typeof entryViewerForm &&
-					<FormEntryViewer
-						form={entryViewerForm}
-						entries={entries}
-						onPageNav={onEntryPageNav}
-						// eslint-disable-next-line
-						onSingleEntryViewerOpen={() => {
-							this.setState({
-								showFormList: false
-							})
-						}
-						}
-						// eslint-disable-next-line
-						onSingleEntryViewerClose={() => {
-							this.setState({
-								showFormList: true
-							})
+						<FormEntryViewer
+							form={entryViewerForm}
+							entries={entries}
+							onPageNav={onEntryPageNav}
+							// eslint-disable-next-line
+							onSingleEntryViewerOpen={() => {
+								this.setState({
+									showFormList: false
+								})
+							}
+							}
+							// eslint-disable-next-line
+							onSingleEntryViewerClose={() => {
+								this.setState({
+									showFormList: true
+								})
 
-						}
-						}
-					/>
+							}
+							}
+							onEntryListViewClose={() => {
+									this.setState({
+										showFormList: true
+									});
+									this.props.openEntryViewerForForm(false)
+								}
+							}
+						/>
 					}
 
 				</Grid>

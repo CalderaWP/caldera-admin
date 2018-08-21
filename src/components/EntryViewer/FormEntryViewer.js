@@ -6,12 +6,17 @@ import {getFormColumns} from "./getFormColumns";
 import getFormRows from "./getFormRows";
 import Grid from 'react-css-grid'
 import {RenderGroup} from '@caldera-labs/components';
+import {Button} from '@wordpress/components';
+
+const gridCollapse = 320;
+const gridGap = 24;
 
 
 /**
  * Encapsulates the UI for viewing the saved entries of a form.
  */
 export class FormEntryViewer extends React.PureComponent {
+
 
 	/**
 	 *
@@ -30,6 +35,7 @@ export class FormEntryViewer extends React.PureComponent {
 		this.entriesGrid = this.entriesGrid.bind(this);
 		this.getTotalPages = this.getTotalPages.bind(this);
 		this.topControls = this.topControls.bind(this);
+		this.closeSingleEntry = this.closeSingleEntry.bind(this);
 	}
 
 
@@ -39,6 +45,11 @@ export class FormEntryViewer extends React.PureComponent {
 	 */
 	getTotalPages() {
 		return Math.ceil(this.props.form.entries.count / this.state.perPage);
+	}
+
+	closeSingleEntry() {
+		this.props.onSingleEntryViewerClose();
+		this.setCurrentEntry(0);
 	}
 
 	/**
@@ -78,7 +89,7 @@ export class FormEntryViewer extends React.PureComponent {
 
 		let fields = [];
 		// eslint-disable-next-line
-		if( undefined !== fields || 0 === Object.keys(fields).length ){
+		if (undefined !== fields || 0 === Object.keys(fields).length) {
 			Object.keys(entry.fields).map(fieldId => {
 				let field = entry.fields[fieldId];
 				if (formFields.hasOwnProperty(fieldId)) {
@@ -99,7 +110,6 @@ export class FormEntryViewer extends React.PureComponent {
 	 */
 	entriesGrid() {
 		return (
-
 			<div
 
 			>
@@ -120,8 +130,6 @@ export class FormEntryViewer extends React.PureComponent {
 					onPageNav={this.props.onPageNav}
 				/>
 			</div>
-
-
 		);
 	}
 
@@ -132,11 +140,11 @@ export class FormEntryViewer extends React.PureComponent {
 	topControls() {
 		const {entryListOnly} = this.state;
 		const summaryOnlyFieldConfig = {
-			id: 'cf-something-tags',
+			id: 'cf-form-entry-viewer-summary-only',
 			label: 'Summary Fields Only?',
 			desc: '',
 			type: 'fieldset',
-			innerType : 'checkbox',
+			innerType: 'checkbox',
 			value: entryListOnly,
 			options: [
 				{
@@ -144,24 +152,39 @@ export class FormEntryViewer extends React.PureComponent {
 					label: 'Yes'
 				}
 			],
-			onValueChange: () =>{
+			onValueChange: () => {
 				this.setState({
-					entryListOnly: ! entryListOnly
+					entryListOnly: !entryListOnly
 				});
 				this.props.onSingleEntryViewerOpen();
 
 			}
 		};
 
+
 		const configFields = [
 			summaryOnlyFieldConfig,
 		];
 
-		return(
-			<RenderGroup
-				configFields={configFields}
-				className={'caldera-forms-entry-viewer-top-controls'}
-			/>
+		return (
+			<Grid
+				width={gridCollapse}
+				gap={gridGap}
+			>
+				<Button
+					onClick={() => {
+						this.closeSingleEntry()
+						this.props.onEntryListViewClose();
+					}}
+				>
+					Close
+				</Button>
+				<RenderGroup
+					configFields={configFields}
+					className={'caldera-forms-entry-viewer-top-controls'}
+				/>
+			</Grid>
+
 		);
 
 	}
@@ -172,8 +195,7 @@ export class FormEntryViewer extends React.PureComponent {
 	 */
 	render() {
 		const {currentEntry} = this.state;
-		const gridCollapse = 320;
-		const gridGap = 24;
+
 
 		if (!currentEntry) {
 			return (
@@ -205,8 +227,7 @@ export class FormEntryViewer extends React.PureComponent {
 					id={entry.id}
 					form={this.props.form}
 					onClose={() => {
-						this.props.onSingleEntryViewerClose();
-						this.setCurrentEntry(0);
+						this.closeSingleEntry();
 					}}
 				/>
 				{this.entriesGrid()}
@@ -232,7 +253,8 @@ FormEntryViewer.propTypes = {
 	),
 	onPageNav: PropTypes.func.isRequired,
 	onSingleEntryViewerOpen: PropTypes.func,
-	onSingleEntryViewerClose: PropTypes.func
+	onSingleEntryViewerClose: PropTypes.func,
+	onEntryListViewClose: PropTypes.func
 };
 
 FormEntryViewer.classNames = {

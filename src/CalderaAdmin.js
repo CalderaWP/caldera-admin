@@ -47,13 +47,26 @@ class CalderaAdmin extends Component {
 	 * @param {String} formId
 	 */
 	onOpenEntryViewerForForm(formId) {
-		this.setState({
-			entryViewerForm: this.props.forms[formId]
-		});
+		console.log(formId);
+		if( formId ){
+			this.setState({
+				entryViewerForm: this.props.forms[formId]
+			});
 
-		if (this.props.openEntryViewerForForm) {
-			this.props.openEntryViewerForForm(formId);
+			if (this.props.openEntryViewerForForm) {
+				this.props.openEntryViewerForForm(formId);
+			}
+		}else{
+			console.log(formId);
+			this.setState({
+				entryViewerForm: false
+			});
+
+			if (this.props.openEntryViewerForForm) {
+				this.props.openEntryViewerForForm({});
+			}
 		}
+
 	}
 
 	/**

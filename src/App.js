@@ -24,6 +24,7 @@ class App extends React.Component {
 		this.getTemplates = this.getTemplates.bind(this);
 		this.onEntryPageNav = this.onEntryPageNav.bind(this);
 		this.getEntriesViaApi = this.getEntriesViaApi.bind(this);
+		this.closeEntryViewer = this.closeEntryViewer.bind(this);
 	}
 
 	componentDidMount(){
@@ -42,10 +43,16 @@ class App extends React.Component {
 
 
 	}
+
 	setEntryViewerForm(entryViewerForm : Object ){
 		this.setState({entryViewerForm});
 		this.getEntriesViaApi(entryViewerForm);
 
+	}
+
+	closeEntryViewer(){
+		console.log(54);
+		this.setState({});
 	}
 
 	getEntriesViaApi() {
