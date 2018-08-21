@@ -103,6 +103,9 @@ add_filter('caldera_forms_api_prepare_form', function ($form) {
     $form['entries'] = [
         'count' => absint(Caldera_Forms_Entry_Bulk::count($form['ID']))
     ];
+    $_form = Caldera_Forms_Forms::get_form($form['ID']);
+    $form[ '_last_updated' ] = $_form[ '_last_updated' ];
+
     $form[ 'editLink' ] = esc_url_raw( Caldera_Forms_Admin::form_edit_link( $form['ID']));
     return $form;
 });

@@ -27,10 +27,24 @@ export const FormListSort = (props) => {
 
 		}
 	};
+	const searchField = {
+		id: 'cf-form-search',
+		label: 'Search Forms By',
+		desc: '',
+		type: 'input',
+		innerType: 'search',
+		inputClass: FormListSort.classNames.search,
+		value: props.formSearchTerm,
+		onValueChange: (newValue) => {
+			props.onFormSearch(newValue);
+
+		}
+	};
 	return (
 		<div>
 			<RenderGroup
 				configFields={[
+					searchField,
 					sortOptions
 				]}
 				className={'caldera-forms-admin-list-sort'}
@@ -45,7 +59,9 @@ FormListSort.propTypes = {
 		SORT_FORMS_BY_NAME,
 		SORT_FORMS_BY_UPDATE
 	]),
-	onChangeOrder: PropTypes.func
+	onChangeOrder: PropTypes.func,
+	formSearchTerm: PropTypes.string,
+	onFormSearch: PropTypes.func
 
 };
 
@@ -54,7 +70,8 @@ FormListSort.defaultProps = {
 };
 
 FormListSort.classNames = {
-	order: 'order-forms-select'
-}
+	order: 'order-forms-select',
+	search: 'search-froms'
+};
 
 

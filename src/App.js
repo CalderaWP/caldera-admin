@@ -51,7 +51,6 @@ class App extends React.Component {
 	}
 
 	closeEntryViewer(){
-		console.log(54);
 		this.setState({});
 	}
 
