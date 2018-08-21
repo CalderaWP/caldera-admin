@@ -5,6 +5,7 @@ import {Entry} from "./Entry";
 import {getFormColumns} from "./getFormColumns";
 import getFormRows from "./getFormRows";
 import Grid from 'react-css-grid'
+import {RenderGroup} from '@caldera-labs/components';
 
 
 /**
@@ -20,13 +21,15 @@ export class FormEntryViewer extends React.PureComponent {
 		super(props);
 		this.state = {
 			currentEntry: 0,
-			perPage: 20
+			perPage: 20,
+			entryListOnly: true
 		};
 		this.setCurrentEntry = this.setCurrentEntry.bind(this);
 		this.onEntryAction = this.onEntryAction.bind(this);
 		this.getEntryFields = this.getEntryFields.bind(this);
 		this.entriesGrid = this.entriesGrid.bind(this);
 		this.getTotalPages = this.getTotalPages.bind(this);
+		this.topControls = this.topControls.bind(this);
 	}
 
 
@@ -34,8 +37,8 @@ export class FormEntryViewer extends React.PureComponent {
 	 * Get the total number of pages
 	 * @return {number}
 	 */
-	getTotalPages(){
-		return Math.ceil(this.props.form.entries.count/ this.state.perPage);
+	getTotalPages() {
+		return Math.ceil(this.props.form.entries.count / this.state.perPage);
 	}
 
 	/**
@@ -92,19 +95,71 @@ export class FormEntryViewer extends React.PureComponent {
 	 * @return {*}
 	 */
 	entriesGrid() {
-		return <EntryViewer
-			columns={getFormColumns(
-				this.props.form,
-				true,
-				true
-			)}
-			rows={getFormRows(
-				this.props.entries,
-				this.onEntryAction
-			)}
-			totalPages={this.getTotalPages()}
-			onPageNav={this.props.onPageNav}
-		/>;
+		return (
+
+			<div
+
+			>
+				<div>
+					{this.topControls()}
+				</div>
+				<EntryViewer
+					columns={getFormColumns(
+						this.props.form,
+						this.state.entryListOnly,
+						true
+					)}
+					rows={getFormRows(
+						this.props.entries,
+						this.onEntryAction
+					)}
+					totalPages={this.getTotalPages()}
+					onPageNav={this.props.onPageNav}
+				/>
+			</div>
+
+
+		);
+	}
+
+	/**
+	 * Display controls for top of entry viewer
+	 * @return {*}
+	 */
+	topControls() {
+		const {entryListOnly} = this.state;
+		const summaryOnlyFieldConfig = {
+			id: 'cf-something-tags',
+			label: 'Summary Fields Only?',
+			desc: '',
+			type: 'fieldset',
+			innerType : 'checkbox',
+			value: entryListOnly,
+			options: [
+				{
+					value: true,
+					label: 'Yes'
+				}
+			],
+			onValueChange: () =>{
+				this.setState({
+					entryListOnly: ! entryListOnly
+				})
+
+			}
+		};
+
+		const configFields = [
+			summaryOnlyFieldConfig,
+		];
+
+		return(
+			<RenderGroup
+				configFields={configFields}
+				className={'caldera-forms-entry-viewer-top-controls'}
+			/>
+		);
+
 	}
 
 	/**
@@ -156,7 +211,6 @@ export class FormEntryViewer extends React.PureComponent {
 	}
 
 
-
 };
 
 /**
@@ -176,5 +230,5 @@ FormEntryViewer.propTypes = {
 
 FormEntryViewer.classNames = {
 	wrapper: 'caldera-forms-entry-viewer'
-}
+};
 
