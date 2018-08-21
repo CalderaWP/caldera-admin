@@ -59,6 +59,7 @@ export class FormEntryViewer extends React.PureComponent {
 	onEntryAction(eventType, id) {
 		switch (eventType) {
 			case 'view':
+				this.props.onSingleEntryViewerOpen();
 				this.setCurrentEntry(id);
 				break;
 			default:
@@ -77,16 +78,18 @@ export class FormEntryViewer extends React.PureComponent {
 
 		let fields = [];
 		// eslint-disable-next-line
-		Object.keys(entry.fields).map(fieldId => {
-			let field = entry.fields[fieldId];
-			if (formFields.hasOwnProperty(fieldId)) {
-				field.label = formFields[fieldId].name;
-			} else {
-				field.label = field.slug;
+		if( undefined !== fields || 0 === Object.keys(fields).length ){
+			Object.keys(entry.fields).map(fieldId => {
+				let field = entry.fields[fieldId];
+				if (formFields.hasOwnProperty(fieldId)) {
+					field.label = formFields[fieldId].name;
+				} else {
+					field.label = field.slug;
 
-			}
-			fields.push(field);
-		});
+				}
+				fields.push(field);
+			});
+		}
 		return fields;
 	}
 
@@ -144,7 +147,8 @@ export class FormEntryViewer extends React.PureComponent {
 			onValueChange: () =>{
 				this.setState({
 					entryListOnly: ! entryListOnly
-				})
+				});
+				this.props.onSingleEntryViewerOpen();
 
 			}
 		};
@@ -201,6 +205,7 @@ export class FormEntryViewer extends React.PureComponent {
 					id={entry.id}
 					form={this.props.form}
 					onClose={() => {
+						this.props.onSingleEntryViewerClose();
 						this.setCurrentEntry(0);
 					}}
 				/>
@@ -225,7 +230,9 @@ FormEntryViewer.propTypes = {
 			PropTypes.array,
 		]
 	),
-	onPageNav: PropTypes.func.isRequired
+	onPageNav: PropTypes.func.isRequired,
+	onSingleEntryViewerOpen: PropTypes.func,
+	onSingleEntryViewerClose: PropTypes.func
 };
 
 FormEntryViewer.classNames = {

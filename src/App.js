@@ -49,7 +49,10 @@ class App extends React.Component {
 	}
 
 	getEntriesViaApi() {
-		this.getApiClients().entriesClient.getEntries(this.state.entryViewerForm, this.state.entryPage).then(entries => {
+		this.getApiClients().entriesClient.getEntries(
+			this.state.entryViewerForm,
+			this.state.entryPage
+		).then(entries => {
 			this.setState({entries})
 		});
 	}

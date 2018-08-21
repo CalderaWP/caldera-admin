@@ -5,21 +5,63 @@ import FormAdminHelpView from './FormAdminHelpView';
 import AdminSlot from "./AdminSlot";
 import {FormList} from "../../components/FormsList/FormList";
 import {Notice} from '@wordpress/components'
+import types from "../../types";
+import PropTypes from "prop-types";
+import {FormEntryViewer} from '../../components/EntryViewer/FormEntryViewer'
+import Grid from 'react-css-grid'
 
 export default class FormsSlot extends AdminSlot {
 
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			showFormList: true
+		};
+		this.getContent = this.getContent.bind(this);
+	}
 
 	getContent(forms) {
 		if (0 !== Object.keys(forms).length) {
+			const {entryViewerForm, entries, onEntryPageNav} = this.props;
+
 			return (
-				<div>
+
+				<Grid
+				>
+					{true === this.state.showFormList &&
 					<FormList
 						forms={forms}
 						onFormUpdate={this.props.onFormUpdate}
 						openEntryViewerForForm={this.props.openEntryViewerForForm}
 					/>
-				</div>
+
+					}
+
+					{'object' === typeof entryViewerForm &&
+					<FormEntryViewer
+						form={entryViewerForm}
+						entries={entries}
+						onPageNav={onEntryPageNav}
+						// eslint-disable-next-line
+						onSingleEntryViewerOpen={() => {
+							this.setState({
+								showFormList: false
+							})
+						}
+						}
+						// eslint-disable-next-line
+						onSingleEntryViewerClose={() => {
+							this.setState({
+								showFormList: true
+							})
+
+						}
+						}
+					/>
+					}
+
+				</Grid>
 			);
 		}
 		return (
@@ -61,8 +103,19 @@ export default class FormsSlot extends AdminSlot {
 }
 
 
-FormsSlot.propTypes = FormList.propTypes;
+FormsSlot.propTypes = {
+	...FormList.propTypes,
+	entries: PropTypes.shape(types.entriesType),
+	onEntryPageNav: PropTypes.func,
+	openEntryViewerForForm: PropTypes.func,
+	/**entryViewerForm: PropTypes.oneOf([
+	 //PropTypes.shape(types.formType),
+	 PropTypes.object,
+	 PropTypes.bool
+	 ]
+	 )**/
+};
+
 FormsSlot.defaultProps = {
-	forms: {},
-	entries: {}
+	entryViewerForm: false
 };

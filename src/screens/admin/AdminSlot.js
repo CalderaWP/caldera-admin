@@ -36,7 +36,7 @@ export default class AdminSlot extends React.Component {
 
 	displayHelpContent(){
 		const posts = this.state.helpContent;
-		if( 0 === Object.keys(posts).length ){
+		if( undefined === posts || 0 === Object.keys(posts).length ){
 			return <React.Fragment/>
 		}
 		return(

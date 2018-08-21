@@ -6,7 +6,6 @@ import FormAdminHelpView from "./screens/admin/FormAdminHelpView";
 import CreateFormSlot from "./screens/admin/CreateFormSlot";
 import FormsSlot from "./screens/admin/FormsSlot";
 import SettingsSlot from "./screens/admin/SettingsSlot";
-import EntryViewerSlot from "./screens/admin/EntryViewerSlot";
 import GettingStartedSlot from './screens/admin/GettingStartedSlot';
 import {collectionTypes} from './types'
 import {PRO_CONNECTED, PRO_SETTINGS} from "./components/Settings/ProSettings/proSettingsType";
@@ -24,7 +23,7 @@ class CalderaAdmin extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			entryViewerForm: {},
+			entryViewerForm: false,
 		};
 		this.onFormUpdate = this.onFormUpdate.bind(this);
 		this.onCreateForm = this.onCreateForm.bind(this);
@@ -103,7 +102,7 @@ class CalderaAdmin extends Component {
 			updateSettings,
 			templates,
 			forms,
-			settings
+			settings,
 		} = this.props;
 
 		return (
@@ -155,9 +154,11 @@ class CalderaAdmin extends Component {
 					/>
 					<FormsSlot
 						forms={forms}
+						entries={entries}
 						onFormUpdate={this.onFormUpdate}
 						openEntryViewerForForm={this.onOpenEntryViewerForForm}
 						helpContentCategory={549}
+						entryViewerForm={this.state.entryViewerForm}
 					/>
 					<CreateFormSlot
 						forms={forms}
@@ -170,14 +171,7 @@ class CalderaAdmin extends Component {
 						updateSeqttings={updateSettings}
 						helpContentCategory={548}
 					/>
-					{this.showEntryViewer() &&
-					<EntryViewerSlot
-						form={this.state.entryViewerForm}
-						entries={entries}
-						helpContentCategory={551}
-						onEntryPageNav={this.props.onEntryPageNav}
-					/>
-					}
+
 					<FormAdminMainView/>
 					<FormAdminHelpView/>
 
