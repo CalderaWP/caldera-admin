@@ -68,10 +68,17 @@ export class FormEntryViewer extends React.PureComponent {
 	 * @param {String} id Entry ID
 	 */
 	onEntryAction(eventType, id) {
+		const {currentEntry} = this.state;
 		switch (eventType) {
 			case 'view':
 				this.props.onSingleEntryViewerOpen();
 				this.setCurrentEntry(id);
+			break;
+			case 'resend':
+				console.log('r');
+				break;
+			case 'delete':
+				console.log('d');
 				break;
 			default:
 				return;

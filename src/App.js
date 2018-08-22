@@ -1,7 +1,8 @@
 import React from 'react';
 import './css/legacy/admin.css';
 import './css/admin-two.css';
-import CalderaAdmin from './CalderaAdmin'
+import CalderaAdmin from './CalderaAdmin';
+import {cfAdmin} from "./apiClients";
 import apiClients from './apiClients';
 
 
@@ -36,18 +37,18 @@ class App extends React.Component {
 	getApiClients(){
 		return apiClients;
 	}
+	getCfConfig(){
+		return cfAdmin;
+	}
 
 	onEntryPageNav(entryPage){
 		this.setState({entryPage});
 		this.getEntriesViaApi();
-
-
 	}
 
 	setEntryViewerForm(entryViewerForm : Object ){
 		this.setState({entryViewerForm});
 		this.getEntriesViaApi(entryViewerForm);
-
 	}
 
 	closeEntryViewer(){
@@ -59,9 +60,42 @@ class App extends React.Component {
 			this.state.entryViewerForm,
 			this.state.entryPage
 		).then(entries => {
-			console.log(entries);
 			this.setState({entries})
 		});
+	}
+
+
+	resendEntry(){
+		this.getApiClients().entriesClient.resendEntry(
+			this.state.entryViewerForm,
+			this.state.entryPage
+		).then(r => {
+			console.log(r);
+		});
+	}
+
+	deleteEntry(){
+
+	}
+
+	deleteForm(){
+
+	}
+
+	cloneForm(){
+
+	}
+
+	toggleFormState(){
+
+	}
+
+	getSettingsViaAPI(){
+
+	}
+
+	updateSettingsViaApi(){
+
 	}
 
 	setFormsViaApi(){
@@ -84,13 +118,17 @@ class App extends React.Component {
 		});
 	}
 
+	/**
+	 * Get form templates
+	 *
+	 * @return {Object}
+	 */
 	getTemplates(){
-		return []
+		return this.getCfConfig().templates;
 	}
 
 	render()
 	{
-
 		return (
 			<React.Fragment>
 				<CalderaAdmin
