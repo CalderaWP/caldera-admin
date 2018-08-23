@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`admin screen export admin has the right types and keys 1`] = `"{\\"AdminSlot\\":\\"function\\",\\"FormSlot\\":\\"function\\",\\"EntryViewerSlot\\":\\"function\\",\\"SettingsSlot\\":\\"function\\"}"`;
-
-exports[`screens export index has the right types and keys 1`] = `"{\\"admin\\":\\"object\\"}"`;

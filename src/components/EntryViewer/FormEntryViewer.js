@@ -65,20 +65,19 @@ export class FormEntryViewer extends React.PureComponent {
 	 * Handle clicks on entry action buttons
 	 *
 	 * @param {String} eventType Type of event to dispatch
-	 * @param {String} id Entry ID
+	 * @param {String} entryId Entry ID
 	 */
-	onEntryAction(eventType, id) {
-		const {currentEntry} = this.state;
+	onEntryAction(eventType, entryId) {
 		switch (eventType) {
 			case 'view':
-				this.props.onSingleEntryViewerOpen();
-				this.setCurrentEntry(id);
+				this.props.onSingleEntryViewerOpen(entryId);
+				this.setCurrentEntry(entryId);
 			break;
 			case 'resend':
-				console.log('r');
+				this.props.onEntryResend(entryId);
 				break;
 			case 'delete':
-				console.log('d');
+				this.props.onEntryDelete(entryId);
 				break;
 			default:
 				return;
@@ -95,9 +94,11 @@ export class FormEntryViewer extends React.PureComponent {
 		const formFields = this.props.form.fields;
 
 		let fields = [];
-		// eslint-disable-next-line
 		if (undefined !== fields || 0 === Object.keys(fields).length) {
-			Object.keys(entry.fields).map(fieldId => {
+			// eslint-disable-next-line
+			Object.keys(entry.fields).map(
+				// eslint-disable-next-line
+				fieldId => {
 				let field = entry.fields[fieldId];
 				if (formFields.hasOwnProperty(fieldId)) {
 					field.label = formFields[fieldId].name;
@@ -179,10 +180,7 @@ export class FormEntryViewer extends React.PureComponent {
 				gap={gridGap}
 			>
 				<Button
-					onClick={() => {
-						this.closeSingleEntry();
-						this.props.onEntryListViewClose();
-					}}
+					onClick={this.props.onEntryListViewClose}
 				>
 					Close
 				</Button>

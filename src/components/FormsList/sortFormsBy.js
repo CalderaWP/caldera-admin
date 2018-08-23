@@ -6,7 +6,6 @@ const sortBy = require('lodash.sortby');
  */
 export const sortFormsBy = (sortFormsBy, forms )  => {
 	const sortedArray = sortBy(Object.values(forms), [(form) => { return form[sortFormsBy]; }]);
-	console.log(sortedArray);
 	let sortedForms = {};
 	sortedArray.forEach(sortedForm => {
 		sortedForms[sortedForm.ID] = sortedForm;

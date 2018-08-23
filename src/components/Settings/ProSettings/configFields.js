@@ -1,7 +1,7 @@
 import {optionFactory} from "../../util/optionFactory";
 
 export const PUBLIC_KEY = 'proPublicKey';
-export const PRIVATE_KEY = 'propPrivateKey';
+export const PRIVATE_KEY = 'proPrivateKey';
 export const ENHANCED_DELIVERY = 'enhancedDelivery';
 export const LOG_LEVEL = 'logLevel';
 export const GENEREATE_PDFS = 'generatePDFs';

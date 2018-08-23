@@ -24,7 +24,7 @@ export const Entry = (props) => {
 				</h3>
 				<Button
 					icon={'no'}
-					tile={'Click To Close Entry'}
+					title={'Click To Close Entry'}
 					onClick={props.onClose}
 				>
 					Close

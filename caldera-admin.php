@@ -80,7 +80,7 @@ add_filter('caldera_forms_api_js_config', function ($data) {
     $request = new WP_REST_Request();
     $request->set_param('details', true);
     $forms = $controller->get_items($request);
-    $data['forms'] = json_encode($forms);
+    $data['forms'] = json_encode($forms->data);
 
     return $data;
 });

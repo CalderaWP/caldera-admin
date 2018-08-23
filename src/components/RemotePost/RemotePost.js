@@ -42,7 +42,7 @@ export const RemotePost = (props) => {
 					className={props.buttonClassName}
 
 				>
-					{props.post.readMore}
+					{props.readMore}
 				</a>
 			</article>
 

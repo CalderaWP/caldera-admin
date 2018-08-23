@@ -13,6 +13,7 @@ export const cfAdmin = {
 		root: 'object' === typeof  CF_ADMIN  ? CF_ADMIN.rest.root:'./__MOCK_DATA__/cf-api'
 	},
 	templates: 'object' === typeof  CF_ADMIN  ? CF_ADMIN.templates: {},
+	forms: 'object' === typeof  CF_ADMIN  ? JSON.parse(CF_ADMIN.forms): {},
 };
 
 /**

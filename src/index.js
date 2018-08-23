@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import CalderaAdminWithState from './CalderaAdminWithState';
 import domReady from '@wordpress/dom-ready';
 
 domReady(() => {
@@ -8,7 +8,7 @@ domReady(() => {
 	const el = document.getElementById('caldera-forms-admin');
 	if (null !== el) {
 		ReactDOM.render(
-			<App/>,
+			<CalderaAdminWithState/>,
 			document.getElementById('caldera-forms-admin')
 		);
 
