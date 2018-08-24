@@ -46,6 +46,7 @@ describe('Settings component', () => {
 		);
 		expect(componet.state('mockStuff')).toEqual(mockSettings);
 	});
+
 	it('Passes updates to state to save handle', () => {
 		const updatedSettings = {
 			roy: true

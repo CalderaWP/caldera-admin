@@ -1,43 +1,47 @@
-import {optionFactory} from "../../util/optionFactory";
+import {optionFactory} from "../util/optionFactory";
 
-export const STYLE_FORM = 'SETTINGS/STYLE_INCLUDES/FORM';
-export const STYLE_GRID = 'SETTINGS/STYLE_INCLUDES/FORM';
-export const STYLE_ALERT = 'SETTINGS/STYLE_INCLUDES/STYLE_ALERT';
-export const CDN_ENABLE = 'SETTINGS/CDN';
+export const STYLE_FORM = 'form';
+export const STYLE_GRID = 'grid';
+export const STYLE_ALERT = 'alert';
+export const CDN_ENABLE = 'cdn';
 const enableOption = optionFactory(
 	true,
 	'Enable'
 );
 export default  [
 	{
-		id: STYLE_FORM,
+		id: 'form',
 		label: 'Form Styles',
 		desc: 'Includes Bootstrap 3 styles on the frontend for form fields and buttons',
-		type: 'checkbox',
-		path: 'styleIncludes.form',
+		type: 'fieldset',
+		inputType: 'checkbox',
+		path: 'generalSettings.form',
 		options: [enableOption]
 	},
 	{
-		id: STYLE_ALERT,
+		id: 'alert',
 		label: 'Alert Styles',
 		desc: 'Includes Bootstrap 3 styles on the frontend for form alert notices',
-		type: 'checkbox',
-		path: 'styleIncludes.alert',
+		type: 'fieldset',
+		inputType: 'checkbox',
+		path: 'stylgeneralSettingseIncludes.alert',
 		options: [enableOption]
 	},
 	{
-		id: STYLE_GRID,
+		id: 'grid',
 		label: 'Grid',
 		desc: 'Includes Bootstrap 3 styles on the frontend for form grid layouts',
-		type: 'checkbox',
-		path: 'styleIncludes.grid',
+		type: 'fieldset',
+		inputType: 'checkbox',
+		path: 'generalSettings.grid',
 		options: [enableOption]
 	},{
-		id: CDN_ENABLE,
+		id: 'cdn',
 		label: 'Enable Free CDN',
 		desc: 'Some usage data will be shared with CDN providers',
-		type: 'checkbox',
-		path: 'otherSettings.cdnEnable',
+		type: 'fieldset',
+		innerType: 'checkbox',
+		path: 'generalSettings.cdnEnable',
 		options: [enableOption]
 	},
 

@@ -78,23 +78,27 @@ export class SettingsGroup extends React.PureComponent{
 
 
 	render(){
-		return(
-			<div
-				className={classNames(
-					this.wrapperClass(),
-					this.props.classNames
-				)}
-			>
-				<RenderGroup
-					configFields={this.getConfigFields()}
-				/>
-				<Button
-					onClick={this.props.onSettingsSave}
+		if( Array.isArray( this.props.configFields ) ) {
+			return(
+				<div
+					className={classNames(
+						this.wrapperClass(),
+						this.props.classNames
+					)}
 				>
-					{this.props.saveButtonText}
-				</Button>
-			</div>
-		)
+					<RenderGroup
+						configFields={this.getConfigFields()}
+					/>
+					<Button
+						onClick={this.props.onSettingsSave}
+					>
+						{this.props.saveButtonText}
+					</Button>
+				</div>
+			)
+		}
+		return <div>!</div>
+
 	}
 
 }

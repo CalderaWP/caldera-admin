@@ -14,6 +14,7 @@ export const cfAdmin = {
 	},
 	templates: 'object' === typeof  CF_ADMIN  ? CF_ADMIN.templates: {},
 	forms: 'object' === typeof  CF_ADMIN  ? JSON.parse(CF_ADMIN.forms): {},
+	settings: 'object' === typeof  CF_ADMIN  ? CF_ADMIN.settings: {},
 };
 
 /**

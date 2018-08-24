@@ -1,4 +1,4 @@
-import {optionFactory} from "../../util/optionFactory";
+import {optionFactory} from "../util/optionFactory";
 
 export const PUBLIC_KEY = 'proPublicKey';
 export const PRIVATE_KEY = 'proPrivateKey';
@@ -12,7 +12,7 @@ export const PRO_FORM_SETTINGS = 'formSettings';
 
 export default {
 
-	[PRO_API_KEYS]: [
+	apiKeys: [
 		{
 			id: PUBLIC_KEY,
 			label: 'Public Key',
@@ -36,7 +36,7 @@ export default {
 			default: '',
 		},
 	],
-	[PRO_GENERAL_SETTINGS]: [
+	generalSettings: [
 		{
 			id: ENHANCED_DELIVERY,
 			label: 'Enable Enhanced Delivery',

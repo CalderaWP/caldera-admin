@@ -1,27 +1,34 @@
+
 import React, {Component} from 'react';
 import type {calderaAdminProps} from "./types/calderaAdminProps";
-import {formState} from "./types/states/formState";
+
 import {cfAdmin} from "./apiClients";
 import {FormsSection} from "./components/admin/FormsSection";
-import {
-	//Spinner,
-	Button
-} from '@wordpress/components'
 import {Admin} from '@caldera-labs/components'
 import './css/legacy/admin.css';
 import './css/admin-two.css';
 import type {form, newFormOptions} from "./types/types/form";
 import {formsAdminApiClient,entriesClient} from "./apiClients";
-import type {formEntryViewerState} from "./types/states/formEntryViewerStore";
+import type {formEntryViewerState} from "./types/states/formEntryViewerState";
 import type {formEntry} from "./types/types/formEntry";
+import {TopNav} from "./components/admin/TopNav";
+import {statusType} from "./types/types/statusType";
+import {Settings} from "./components/Settings/Settings";
+import type {settingsType} from "./types/types/settings";
+import HelpContent from "./components/admin/HelpContent";
+import Grid from 'react-css-grid';
 
 type Props = {
 	...calderaAdminProps,
 };
 
 type State = {
-	...formState,
-	...formEntryViewerState
+	forms: Object,
+	templates: Object,
+	...formEntryViewerState,
+	mainStatus: statusType,
+	activeView: string,
+	settings: settingsType
 };
 
 
@@ -31,22 +38,38 @@ type State = {
 class CalderaAdminWithState extends Component<Props, State> {
 
 	state = {
-		forms: {},
-		templates:  {},
+		forms: cfAdmin.forms,
+		templates: cfAdmin.templates,
+		mainStatus: {
+			loading: true,
+			error: false,
+			message: '',
+			show: false
+		},
 		entryViewerForm: '',
 		entryPage: 1,
 		entries: {},
-		currentEntry: 0
+		currentEntry: 0,
+		activeView: 'forms',
+		settings: cfAdmin.settings
 	};
 
 	constructor(props: Props) {
 		super(props);
-		this.getFormsStore = this.getFormsStore.bind(this);
-		this.getFormEntryViewerStore = this.getFormEntryViewerStore.bind(this);
+		(this: any).getFormsStore = this.getFormsStore.bind(this);
+		(this: any).getFormEntryViewerState = this.getFormEntryViewerState.bind(this);
+		(this: any).mainSection = this.mainSection.bind(this);
 	}
 	componentDidMount() {
 		this.getFormsStore().setForms(cfAdmin.forms);
 		this.setState({forms:cfAdmin.forms});
+		this.setState({settings:cfAdmin.settings});
+		this.setState({
+			mainStatus: {
+				...this.state.mainStatus,
+				loading: false
+			}
+		});
 	}
 
 
@@ -70,7 +93,7 @@ class CalderaAdminWithState extends Component<Props, State> {
 			});
 		};
 
-		const {state} = this;
+		const state : State = this.state;
 
 		return {
 			/**
@@ -124,7 +147,7 @@ class CalderaAdminWithState extends Component<Props, State> {
 		}
 	}
 
-	getFormEntryViewerStore() 	{
+	getFormEntryViewerState() 	{
 		const {state} = this;
 
 		const setEntries = (entries: Object) => {
@@ -220,52 +243,76 @@ class CalderaAdminWithState extends Component<Props, State> {
 	}
 
 
-
-
-	render() {
+	mainSection(){
 		const {
 			forms,
 			templates,
 			entryViewerForm,
 			entryPage,
 			entries,
-			currentEntry
+			currentEntry,
+			activeView,
+			settings
 		} = this.state;
+
+
+		if( activeView !== 'forms' || activeView !== 'settings' ){
+			return (
+				<Grid>
+					<HelpContent helpContentCategory={550} />
+				</Grid>
+			)
+
+		}
+
 		return (
-			<Admin.PageBody>
-				<Admin.CalderaHeader>
-					<li>
-						<Button
-							isPrimary
-						>
-							New Form
-						</Button>
-					</li>
-					<li>
-						<Button
-						>
-							Forms
-						</Button>
-					</li>
-					<li>
-						<Button
-						>
-							Settings
-						</Button>
-					</li>
-				</Admin.CalderaHeader>
-				<div>
+			<Grid>
+				{'forms' === activeView &&
 					<FormsSection
 						formsStore={this.getFormsStore()}
-						formEntryViewerStore={this.getFormEntryViewerStore()}
+						formEntryViewerState={this.getFormEntryViewerState()}
 						forms={forms}
 						template={templates}
 						entryViewerForm={entryViewerForm}
 						entryPage={entryPage}
 						entries={entries}
 						currentEntry={currentEntry}
+						helpContentCategory={550}
+
 					/>
-				</div>
+
+				}
+				{ 'settings' === activeView &&
+					<Settings
+						settings={settings}
+						onSettingsSave={() => {}}
+						helpContentCategory={550}
+					/>
+				}
+
+
+			</Grid>
+
+
+		)
+	}
+
+	render() {
+		const {
+			activeView,
+			mainStatus
+		} = this.state;
+
+		return (
+			<Admin.PageBody>
+				<TopNav
+					mainStatus={mainStatus}
+					setActive={activeView => {
+						this.setState({activeView});
+					}}
+					active={activeView}
+				/>
+				{this.mainSection()}
 			</Admin.PageBody>
 		)
 	}

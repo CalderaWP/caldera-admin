@@ -1,9 +1,9 @@
 /**
- * A type to describe status
+ * A type to describe statusType
  *
  * For use with StatusIndicator component
  */
-export type status = {
+export type statusType = {
 	loading: boolean,
 	error: boolean,
 	message: string,

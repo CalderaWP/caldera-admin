@@ -103,7 +103,7 @@ warning_message() {
 }
 
 ##
-# Add status message formatting to a string, and echo it.
+# Add statusType message formatting to a string, and echo it.
 #
 # @param {string} message The string to add formatting to.
 ##

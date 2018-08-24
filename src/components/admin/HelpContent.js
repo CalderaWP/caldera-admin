@@ -13,7 +13,7 @@ type State = {
 	helpContent: Array<wpPost>,
 }
 
-export default class AdminSlot extends React.Component<Props, State> {
+export default class HelpContent extends React.Component<Props, State> {
 	state = {
 		helpContent: [],
 	};
@@ -21,14 +21,13 @@ export default class AdminSlot extends React.Component<Props, State> {
 	constructor(props: Props) {
 		super(props);
 		(this: any).this.getHelpContent = this.getHelpContent.bind(this);
-		(this: any).this.displayHelpContent = this.displayHelpContent.bind(this);
 
 	}
 
 
-	displayHelpContent() {
+	render() {
 		if (undefined === this.state.helpContent || ! this.state.helpContent.length ) {
-			return <React.Fragment/>
+			return <p>Hi Roy</p>
 		}
 		return (
 			<Grid

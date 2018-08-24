@@ -7,5 +7,8 @@ export type formState = {
 	templates: Object,
 };
 
-
+export const formsIntialState = {
+	forms: {},
+	templates: {},
+}
 

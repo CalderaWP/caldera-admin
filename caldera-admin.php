@@ -81,7 +81,14 @@ add_filter('caldera_forms_api_js_config', function ($data) {
     $request->set_param('details', true);
     $forms = $controller->get_items($request);
     $data['forms'] = json_encode($forms->data);
-
+    $data[ 'settings' ] = [
+        'generalSettings' => array_merge( Caldera_Forms_Render_Assets::get_style_includes(), [
+            'cdn' => Caldera_Forms::settings()->get_cdn()->enabled()
+        ]),
+    ];
+    if( caldera_forms_pro_is_active() ){
+        $data[ 'settings' ][ 'proSettings' ] = calderawp\CalderaForms\pro\container::get_instance()->get_settings()->toArray();
+    }
     return $data;
 });
 

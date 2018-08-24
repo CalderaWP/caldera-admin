@@ -8,7 +8,7 @@ import {FormList} from "../FormsList/FormList";
 import {FormEntryViewer} from "../EntryViewer/FormEntryViewer";
 import {Notice} from '@wordpress/components'
 import type {formState} from "../../types/states/formState";
-import type {formEntryViewerState} from "../../types/states/formEntryViewerStore";
+import type {formEntryViewerState} from "../../types/states/formEntryViewerState";
 
 const filter = require('lodash.filter');
 
@@ -59,12 +59,14 @@ export class FormsSection extends React.Component<Props, State> {
 	}
 
 	setEntryViewerForm(formId: string) {
-		this.props.formEntryViewerStore.setEntryViewerForm(formId);
-		this.props.formEntryViewerStore.getEntriesViaApi();
+		this.props.formEntryViewerState.setEntryViewerForm(formId);
+		this.props.formEntryViewerState.getEntriesViaApi().then(() => {
+			alert(1);
+		})
 	}
 
 	onSingleEntryViewerOpen(entryId: number) {
-		this.props.formEntryViewerStore.setCurrentEntry(entryId);
+		this.props.formEntryViewerState.setCurrentEntry(entryId);
 		this.setState({
 			showFormList: false
 		})
@@ -72,11 +74,11 @@ export class FormsSection extends React.Component<Props, State> {
 	}
 
 	onSingleEntryViewerClose() {
-		this.props.formEntryViewerStore.setCurrentEntry(0);
+		this.props.formEntryViewerState.setCurrentEntry(0);
 	}
 
 	onEntryListViewClose() {
-		this.props.formEntryViewerStore.setEntryViewerForm('');
+		this.props.formEntryViewerState.setEntryViewerForm('');
 		this.setState({
 			showFormList: true
 		})
@@ -136,7 +138,7 @@ export class FormsSection extends React.Component<Props, State> {
 	 * @return {*}
 	 */
 	render() {
-		const {formsStore, formEntryViewerStore} = this.props;
+		const {formsStore, formEntryViewerState} = this.props;
 		if (!formsStore.hasForms()) {
 			return (
 				<Notice
@@ -152,7 +154,7 @@ export class FormsSection extends React.Component<Props, State> {
 		const {
 			setEntryPage,
 			getEntries
-		} = formEntryViewerStore;
+		} = formEntryViewerState;
 
 		return (
 			<Grid>

@@ -1,6 +1,6 @@
 //@flow
 
-export type  proApiKeys = {
+export type proApiKeys = {
 	proPublicKey: string,
 	proPrivateKey: string,
 };
@@ -23,18 +23,14 @@ export type proSettings = {
 	formSettings: Object
 };
 
-/**
- * Type that describes the styleIncludes settings
- */
-export type styleIncludesSettings = {
-	'SETTINGS/STYLE_INCLUDES/FORM': boolean,
-	'SETTINGS/STYLE_INCLUDES/GRID': boolean,
-	'SETTINGS/STYLE_INCLUDES/ALERT': boolean,
-}
 
-/**
- * Type that describes the other settings
- */
-export type otherSettings = {
-	'SETTINGS/CDN': boolean,
+
+export type settingsType = {
+	generalSettings: {
+		form: boolean,
+		grid: boolean,
+		alert: boolean,
+		cdn: boolean
+	},
+	proSettings: proSettings
 }
