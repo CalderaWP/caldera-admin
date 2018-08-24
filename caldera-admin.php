@@ -121,7 +121,7 @@ add_filter('caldera_forms_api_prepare_form', function ($form) {
 /**
  * Add random entries to all forms on activate
  */
-add_action('init', function () {
+add_action('init----', function () {
     if (-1 !== get_option('CF_ADMIN_2_VER', -1)) {
         caldera_admin_random_form_data();
         update_option('CF_ADMIN_2_VER', 1);

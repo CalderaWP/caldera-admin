@@ -1,7 +1,6 @@
 import React from 'react';
 import {factories} from '@caldera-labs/components';
-import propTypes from 'prop-types'
-import {collectionTypes} from "../../types";
+import PropTypes from 'prop-types'
 
 const {fieldFactory} = factories;
 
@@ -129,10 +128,10 @@ export class NewForm extends React.PureComponent {
  * @type {{fieldConfigs: shim, onCreate: *, templates: shim}}
  */
 NewForm.propTypes = {
-	fieldConfigs: propTypes.array,
-	onCreate: propTypes.func.isRequired,
-	templates: propTypes.array,
-	forms: collectionTypes.formsType
+	fieldConfigs: PropTypes.array,
+	onCreate: PropTypes.func.isRequired,
+	templates: PropTypes.array,
+	forms: PropTypes.object
 };
 
 /**

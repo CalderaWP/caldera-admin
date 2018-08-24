@@ -234,6 +234,7 @@ export class FormEntryViewer extends React.PureComponent {
 					onClose={() => {
 						this.closeSingleEntry();
 					}}
+					page={this.props.page}
 				/>
 				{this.entriesGrid()}
 			</Grid>

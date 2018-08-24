@@ -53,8 +53,9 @@ export class FormsSection extends React.Component<Props, State> {
 	}
 
 	onEntryPageNav(entryPage:string){
+		console.log(entryPage);
 		this.props.formEntryViewerState.setEntryPage(entryPage);
-		this.props.formEntryViewerState.getEntriesViaApi();
+		this.props.formEntryViewerState.getEntriesViaApi(entryPage);
 
 	}
 
@@ -138,7 +139,7 @@ export class FormsSection extends React.Component<Props, State> {
 	 * @return {*}
 	 */
 	render() {
-		const {formsStore, formEntryViewerState} = this.props;
+		const {formsStore, formEntryViewerState,entryPage} = this.props;
 		if (!formsStore.hasForms()) {
 			return (
 				<Notice
@@ -151,10 +152,7 @@ export class FormsSection extends React.Component<Props, State> {
 		}
 		const {orderedForms, formOrderBy, formSearchTerm} = this.state;
 		const entryViewerFormConfig = this.getEntryViewerFormConfig();
-		const {
-			setEntryPage,
-			getEntries
-		} = formEntryViewerState;
+		const {getEntries} = formEntryViewerState;
 
 		return (
 			<Grid>
@@ -177,7 +175,7 @@ export class FormsSection extends React.Component<Props, State> {
 				<FormEntryViewer
 					form={entryViewerFormConfig}
 					entries={getEntries()}
-					onEntryPageNav={setEntryPage}
+					onEntryPageNav={this.onEntryPageNav}
 					onSingleEntryViewerOpen={this.onSingleEntryViewerOpen}
 					onSingleEntryViewerClose={this.onSingleEntryViewerClose}
 					onEntryListViewClose={this.onEntryListViewClose}
@@ -188,7 +186,8 @@ export class FormsSection extends React.Component<Props, State> {
 					// eslint-disable-next-line
 					onEntryDelete={(entryId) => {
 						this.props.formEntryViewerStore.deleteEntry(entryId)
-					}}//deleteEntry
+					}}
+					page={entryPage}
 				/>
 
 				}

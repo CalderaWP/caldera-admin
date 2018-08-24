@@ -17,6 +17,8 @@ import {Settings} from "./components/Settings/Settings";
 import type {settingsType} from "./types/types/settings";
 import HelpContent from "./components/admin/HelpContent";
 import Grid from 'react-css-grid';
+import Router from './Router';
+import {NewForm} from "./components/NewForm/NewForm";
 
 type Props = {
 	...calderaAdminProps,
@@ -50,7 +52,7 @@ class CalderaAdminWithState extends Component<Props, State> {
 		entryPage: 1,
 		entries: {},
 		currentEntry: 0,
-		activeView: 'forms',
+		activeView: '',
 		settings: cfAdmin.settings
 	};
 
@@ -58,7 +60,6 @@ class CalderaAdminWithState extends Component<Props, State> {
 		super(props);
 		(this: any).getFormsStore = this.getFormsStore.bind(this);
 		(this: any).getFormEntryViewerState = this.getFormEntryViewerState.bind(this);
-		(this: any).mainSection = this.mainSection.bind(this);
 	}
 	componentDidMount() {
 		this.getFormsStore().setForms(cfAdmin.forms);
@@ -219,11 +220,14 @@ class CalderaAdminWithState extends Component<Props, State> {
 					});
 				});
 			},
-			getEntriesViaApi(): Promise<any> {
+			getEntriesViaApi(entryPage : ?number): Promise<any> {
+				if( ! entryPage ){
+					entryPage = state.entryPage;
+				}
 				return new Promise((resolve, reject) => {
 					entriesClient.getEntries(
 						state.entryViewerForm,
-						state.entryPage
+						entryPage
 					).then(entries => {
 						setEntries(entries);
 					}).catch(error => {
@@ -243,7 +247,9 @@ class CalderaAdminWithState extends Component<Props, State> {
 	}
 
 
-	mainSection(){
+
+	render() {
+
 		const {
 			forms,
 			templates,
@@ -252,55 +258,8 @@ class CalderaAdminWithState extends Component<Props, State> {
 			entries,
 			currentEntry,
 			activeView,
+			mainStatus,
 			settings
-		} = this.state;
-
-
-		if( activeView !== 'forms' || activeView !== 'settings' ){
-			return (
-				<Grid>
-					<HelpContent helpContentCategory={550} />
-				</Grid>
-			)
-
-		}
-
-		return (
-			<Grid>
-				{'forms' === activeView &&
-					<FormsSection
-						formsStore={this.getFormsStore()}
-						formEntryViewerState={this.getFormEntryViewerState()}
-						forms={forms}
-						template={templates}
-						entryViewerForm={entryViewerForm}
-						entryPage={entryPage}
-						entries={entries}
-						currentEntry={currentEntry}
-						helpContentCategory={550}
-
-					/>
-
-				}
-				{ 'settings' === activeView &&
-					<Settings
-						settings={settings}
-						onSettingsSave={() => {}}
-						helpContentCategory={550}
-					/>
-				}
-
-
-			</Grid>
-
-
-		)
-	}
-
-	render() {
-		const {
-			activeView,
-			mainStatus
 		} = this.state;
 
 		return (
@@ -312,7 +271,40 @@ class CalderaAdminWithState extends Component<Props, State> {
 					}}
 					active={activeView}
 				/>
-				{this.mainSection()}
+				<Grid>
+					<Router
+						activeView={activeView}
+						FormsSection={(
+							<FormsSection
+								formsStore={this.getFormsStore()}
+								formEntryViewerState={this.getFormEntryViewerState()}
+								forms={forms}
+								template={templates}
+								entryViewerForm={entryViewerForm}
+								entryPage={entryPage}
+								entries={entries}
+								currentEntry={currentEntry}
+								helpContentCategory={550}
+								activeView={activeView}
+							/>
+						)}
+						SettingsSection={(
+							<Settings
+								settings={settings}
+								onSettingsSave={() => {}}
+								helpContentCategory={550}
+								activeView={activeView}
+							/>
+						)}
+						NewFormSection={(
+							<NewForm
+								onCreate={this.getFormsStore().createForm}
+								templates={Object.values(templates)}
+								forms={forms}
+							/>
+						)}
+					/>
+				</Grid>
 			</Admin.PageBody>
 		)
 	}
