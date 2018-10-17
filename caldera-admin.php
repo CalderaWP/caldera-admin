@@ -91,6 +91,7 @@ add_filter('caldera_forms_api_js_config', function ($data) {
     }
     return $data;
 });
+add_filter( 'caldera_forms_api_allow_form_view', '__return_true' );
 
 add_filter('caldera_forms_render_assets_minify', '__return_true');
 

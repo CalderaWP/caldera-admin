@@ -95,7 +95,6 @@ class CalderaAdminWithState extends Component<Props, State> {
 		};
 
 		const state : State = this.state;
-
 		return {
 			/**
 			 * Check if we have forms
@@ -109,7 +108,7 @@ class CalderaAdminWithState extends Component<Props, State> {
 			 * @return {Object}
 			 */
 			getForms: (): Object => {
-				return state.forms;
+				return Object.assign({},state.forms);
 			},
 			/**
 			 * (re)Set forms
@@ -278,7 +277,7 @@ class CalderaAdminWithState extends Component<Props, State> {
 							<FormsSection
 								formsStore={this.getFormsStore()}
 								formEntryViewerState={this.getFormEntryViewerState()}
-								forms={forms}
+								forms={this.getFormsStore().getForms()}
 								template={templates}
 								entryViewerForm={entryViewerForm}
 								entryPage={entryPage}

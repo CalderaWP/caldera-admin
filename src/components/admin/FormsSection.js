@@ -53,7 +53,6 @@ export class FormsSection extends React.Component<Props, State> {
 	}
 
 	onEntryPageNav(entryPage:string){
-		console.log(entryPage);
 		this.props.formEntryViewerState.setEntryPage(entryPage);
 		this.props.formEntryViewerState.getEntriesViaApi(entryPage);
 

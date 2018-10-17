@@ -36,12 +36,16 @@
         {
             "type": "git",
             "url": "https://github.com/CalderaWP/caldera-ghost-runner"
+        },
+        {
+            "type": "git",
+            "url": "git@github.com:CalderaWP/calderawp-wordpress-plugin.git"
         }
     ],
     "scripts" : {
         "tests" : "composer fixes && composer sniffs && composer test:unit && composer wp:tests",
         "test:unit": "phpunit --testsuite=unit",
-        "wp:install": "bash ./bin/install-docker.sh && wp:config",
+        "wp:install": "bash ./bin/install-docker.sh && composer wp:config",
         "wp:config": "docker-compose run --rm cli wp rewrite structure '/%postname%/'",
         "wp:start": "docker-compose up -d",
         "wp:tests": "docker-compose run --rm wordpress_phpunit phpunit --configuration phpunit-integration.xml.dist",
