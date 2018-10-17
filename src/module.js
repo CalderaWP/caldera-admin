@@ -3,7 +3,6 @@ import {
 	dispatchers,
 	selectors
 } from "./CalderaAdminWithState";
-import CalderaAdmin from './CalderaAdmin';
 import store,{CALDERA_FORMS_ADMIN_STORE} from "./store";
 import apiClients from './apiClients';
 import components from './components';

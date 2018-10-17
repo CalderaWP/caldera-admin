@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`types has the collectionTypes 1`] = `"{}"`;
-
-exports[`types has the types 1`] = `"{\\"formType\\":{},\\"entryType\\":{},\\"proSettingsType\\":{},\\"privacySettingsType\\":{}}"`;

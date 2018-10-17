@@ -201,7 +201,6 @@ export class FormEntryViewer extends React.PureComponent {
 	render() {
 		const {currentEntry} = this.state;
 
-
 		if (!currentEntry) {
 			return (
 				<Grid

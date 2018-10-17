@@ -299,7 +299,7 @@ class CalderaAdminWithState extends Component<Props, State> {
 						NewFormSection={(
 							<NewForm
 								onCreate={this.getFormsStore().createForm}
-								templates={Object.values(templates)}
+								templates={templates}
 								forms={forms}
 							/>
 						)}

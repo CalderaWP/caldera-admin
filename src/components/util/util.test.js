@@ -42,8 +42,6 @@ describe('optionFactory ', () => {
 });
 
 describe('pickArray', () => {
-
-
 	it('picks id', () => {
 		expect(
 			pickArray([{

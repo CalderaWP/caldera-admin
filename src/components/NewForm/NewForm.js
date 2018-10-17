@@ -72,7 +72,9 @@ export class NewForm extends React.PureComponent {
 	 */
 	getFieldComponents(){
 		let fields = {};
-		this.props.fieldConfigs.forEach( fieldConfig => {
+		const {props} = this;
+		const {fieldConfigs,templates} = props;
+		fieldConfigs.forEach( fieldConfig => {
 			const {id} = fieldConfig;
 			if ( 'newFormSubmitButton' !== id ) {
 				fieldConfig.onValueChange = (newValue) => {
@@ -82,7 +84,18 @@ export class NewForm extends React.PureComponent {
 				};
 				fieldConfig.value = this.state[id];
 				if( 'newFormTemplate' === id ){
-					fieldConfig.options = this.props.templates;
+					const opts=  [];
+					Object.keys(templates).forEach( templatesKey => {
+						opts.push({
+							value:templatesKey,
+							label: templates[templatesKey]
+						})
+					});
+
+					fieldConfig.options = opts;
+					fieldConfig.onValueChange = (event) => {
+						this.setState({newFormTemplate:event.target.value});
+					};
 				}
 			}else{
 				fieldConfig.onClick = () => {

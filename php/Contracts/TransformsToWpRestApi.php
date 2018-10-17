@@ -3,6 +3,8 @@
 
 namespace calderawp\CalderaForms\Admin\Contracts;
 
+use calderawp\interop\Entity;
+
 interface TransformsToWpRestApi
 {
 
@@ -35,4 +37,6 @@ interface TransformsToWpRestApi
 	 * @return array
 	 */
 	public function collectionToRestApiEndpoint(array $attributes, $callback, $permissionsCallback, $method = 'GET');
+
+
 }
